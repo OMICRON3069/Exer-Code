@@ -10,7 +10,7 @@ namespace fword {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Form1 ÕªÒª
+	/// Form1 æ‘˜è¦
 	/// </summary>
 	public ref class Form1 : public System::Windows::Forms::Form
 	{
@@ -19,7 +19,7 @@ namespace fword {
 		{
 			InitializeComponent();
 			//
-			//TODO: ÔÚ´Ë´¦Ìí¼Ó¹¹Ôìº¯Êı´úÂë
+			//TODO: åœ¨æ­¤å¤„æ·»åŠ æ„é€ å‡½æ•°ä»£ç 
 			//
 		}
 		public:
@@ -27,14 +27,14 @@ namespace fword {
 	    Bitmap^  original_bmap;
 	    Bitmap^  processed_bmap;
 
-	     int nWidth;                 //Í¼Ïñ¿í
-	     int nHeight;                //Í¼Ïñ¸ß
+	     int nWidth;                 //å›¾åƒå®½
+	     int nHeight;                //å›¾åƒé«˜
 
-	     BYTE **oriImage;           //Ô­Í¼»Ò¶È
-		 BYTE **proImage;          //´¦Àíºó»Ò¶È
+	     BYTE **oriImage;           //åŸå›¾ç°åº¦
+		 BYTE **proImage;          //å¤„ç†åç°åº¦
 	protected:
 		/// <summary>
-		/// ÇåÀíËùÓĞÕıÔÚÊ¹ÓÃµÄ×ÊÔ´¡£
+		/// æ¸…ç†æ‰€æœ‰æ­£åœ¨ä½¿ç”¨çš„èµ„æºã€‚
 		/// </summary>
 		~Form1()
 		{
@@ -59,14 +59,14 @@ namespace fword {
 
 	private:
 		/// <summary>
-		/// ±ØĞèµÄÉè¼ÆÆ÷±äÁ¿¡£
+		/// å¿…éœ€çš„è®¾è®¡å™¨å˜é‡ã€‚
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Éè¼ÆÆ÷Ö§³ÖËùĞèµÄ·½·¨ - ²»Òª
-		/// Ê¹ÓÃ´úÂë±à¼­Æ÷ĞŞ¸Ä´Ë·½·¨µÄÄÚÈİ¡£
+		/// è®¾è®¡å™¨æ”¯æŒæ‰€éœ€çš„æ–¹æ³• - ä¸è¦
+		/// ä½¿ç”¨ä»£ç ç¼–è¾‘å™¨ä¿®æ”¹æ­¤æ–¹æ³•çš„å†…å®¹ã€‚
 		/// </summary>
 void Sobel(double **tenA,double **tenB,int tenNo,int nWidth, int nHeight,BYTE **formerImage,BYTE **imageT)
   {
@@ -172,7 +172,7 @@ for( int i=0; i<nHeight; i++ )
    delete []imageT2;
 }
 
-void display_image(Bitmap^ bmap,BYTE **grey)//´Ë´¦Ô­int±äÎªBYTE                                                        
+void display_image(Bitmap^ bmap,BYTE **grey)//æ­¤å¤„åŸintå˜ä¸ºBYTE                                                        
 {
 	 for(int i=0;i<nHeight;i++)
       {
@@ -184,10 +184,10 @@ void display_image(Bitmap^ bmap,BYTE **grey)//´Ë´¦Ô­int±äÎªBYTE
 }
 void Template(double **ten,int tenNo,int nWidth, int nHeight,BYTE **formerImage,double **imageT)
 {
-	//Ä£°åËÄ¸ö·½ÏòÉÏµÄ¿í¶È±äÁ¿
+	//æ¨¡æ¿å››ä¸ªæ–¹å‘ä¸Šçš„å®½åº¦å˜é‡
 	int No=tenNo/2;
 
-	//Ä£°åËÄ¸ö·½ÏòºÍÔ­Í¼ĞÎµÄÖØµşÁ¿
+	//æ¨¡æ¿å››ä¸ªæ–¹å‘å’ŒåŸå›¾å½¢çš„é‡å é‡
 	int front=0;
 	int back=0;
 	int left=0;
@@ -198,7 +198,7 @@ for(int i=0;i<nHeight;i++)
 	{
 		for(int j=0;j<nWidth;j++)
 		{
-			//ÇóÄ£°åËÄ¸ö·½ÏòºÍÔ­Í¼ĞÎµÄÖØµşÁ¿
+			//æ±‚æ¨¡æ¿å››ä¸ªæ–¹å‘å’ŒåŸå›¾å½¢çš„é‡å é‡
 			if(i<No)                         front=i;	
 			else                                front=No;	
 			if(nHeight-i-1<No)      back=nHeight-i-1;	
@@ -208,7 +208,7 @@ for(int i=0;i<nHeight;i++)
 			if(nWidth-j-1<No)       left=nWidth-j-1;
 			else                                left=No;
 			sum=0;
-//ÇóÈ¡µ±Ç°µãÇøÓòºÍÄ£°å¾í»ıµÄ½á¹û
+//æ±‚å–å½“å‰ç‚¹åŒºåŸŸå’Œæ¨¡æ¿å·ç§¯çš„ç»“æœ
 			for(int h=-front;h<=back;h++)
 			{
 				for(int k=-right;k<=left;k++)
@@ -217,7 +217,7 @@ for(int i=0;i<nHeight;i++)
 				}
 			}
 	        
-			//´æ´¢´¦Àí½á¹û
+			//å­˜å‚¨å¤„ç†ç»“æœ
 			imageT[i][j]=sum;
 		   }	
 	}
