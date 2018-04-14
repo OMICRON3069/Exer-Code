@@ -22,6 +22,7 @@ bool LoadSrc(string SrcPath){
         count++;
     }
     src.close();
+    count --;
     return true;
 }
 

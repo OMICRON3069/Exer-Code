@@ -9,10 +9,24 @@
 
 using namespace std;
 
-int GetOperator(string OpName){
+int GetOperator(){
+    string OpName;
+    OpName += Buffer[ite];
     int len = sizeof(Operators)/ sizeof(string);
     for (int i = 0; i < len; i++) {
         if (Operators[i] == OpName) {
+            return i;
+        }
+    }
+    return 114514;
+}
+
+int GetBorder(){
+    string OpName;
+    OpName += Buffer[ite];
+    int len = sizeof(Border)/ sizeof(string);
+    for (int i = 0; i < len; i++) {
+        if (Border[i] == OpName) {
             return i;
         }
     }

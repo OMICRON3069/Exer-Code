@@ -31,11 +31,11 @@ int BorderDetect(){
     int lenO = sizeof(Operators)/ sizeof(string);
     if (Buffer[ite] != ' ' || Buffer[ite] != '\n') {
         for(int i = 0; i < lenO; i++ ) {
-            if (Operators[i] == str);
+            if (Operators[i] == str)
             return 2;
         }
         for(int i = 0; i < lenB; i++ ) {
-            if (Border[i] == str);
+            if (Border[i] == str)
             return 3;
         }
     }
