@@ -9,6 +9,13 @@
 
 using namespace std;
 
+bool isReservedWord(string *str){
+    int len = sizeof(ReservedWord)/sizeof(string);
+    for (int i =0 ; i < len ; i++){
+        
+    }
+}
+
 bool isLetter(){
     return (Buffer[ite] >= 'a' && Buffer[ite] <= 'z' || Buffer[ite] >= 'A' && Buffer[ite] <= 'Z');
 }

@@ -35,11 +35,14 @@ bool CheckDing(){
         tmp = Split(str);
     }
     if (lock){
-        cout << *str << "\n";
+        //cout << *str << "\n";
         /*
          * TODO :
          * Add ReservedWord detect;
          */
+
+
+
         lock = false;
     }
     if (tmp == 2){
