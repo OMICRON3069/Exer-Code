@@ -39,7 +39,7 @@ int BorderDetect(){
                 return 3;
         }
     }
-    else if (Buffer[ite] == 32 || Buffer[ite] == 10) return 1;
+    return 1;
 }
 
 #endif //DING_CHECKER_H
