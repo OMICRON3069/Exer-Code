@@ -16,6 +16,7 @@ bool LoadSrc(string SrcPath){
     auto cc = 0;
     count = 0;
     src.open(SrcPath,std::ifstream::in);
+    src >> std::noskipws;
     while (!src.eof()){
         src >> Buffer[cc];
         cc++;

@@ -29,17 +29,17 @@ int BorderDetect(){
     str += Buffer[ite];
     int lenB = sizeof(Border)/ sizeof(string);
     int lenO = sizeof(Operators)/ sizeof(string);
-    if (Buffer[ite] != ' ' || Buffer[ite] != '\n') {
+    if (Buffer[ite] != 32 || Buffer[ite] != 10) {
         for(int i = 0; i < lenO; i++ ) {
             if (Operators[i] == str)
-            return 2;
+                return 2;
         }
         for(int i = 0; i < lenB; i++ ) {
             if (Border[i] == str)
-            return 3;
+                return 3;
         }
     }
-    else if (Buffer[ite] == ' ' || Buffer[ite] == '\n') return 1;
+    else if (Buffer[ite] == 32 || Buffer[ite] == 10) return 1;
 }
 
 #endif //DING_CHECKER_H
