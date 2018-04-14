@@ -54,8 +54,25 @@ bool CheckDing(){
     }
     if (tmp == 2){
         int num = GetOperator();
-        cout<< OperatorsKey[num] <<":\t"<<  Operators[num] <<"\n";
+        *str += Operators[num];
+
         ite++;
+        if (BorderDetect() == 2){
+            num = GetOperator();
+            *str += Operators[num];
+
+            int lenO = sizeof(Operators)/ sizeof(string);
+            for(int i = 0; i < lenO; i++ ) {
+                if (Operators[i] == *str){
+                    cout << OperatorsKey[i] <<":\t"<<  Operators[i] <<"\n";
+                    ite++;
+                    delete str;
+                    return true;
+                }
+            }
+        }
+        cout<< OperatorsKey[num] <<":\t"<<  Operators[num];
+        cout << "\n";
         delete str;
         return true;
     }
