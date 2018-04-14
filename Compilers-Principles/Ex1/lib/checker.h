@@ -19,7 +19,6 @@ bool isReservedWord(string *str){
 }
 
 bool isLetter(){
-    NumLock = false;
     return (Buffer[ite] >= 'a' && Buffer[ite] <= 'z' || Buffer[ite] >= 'A' && Buffer[ite] <= 'Z');
 }
 

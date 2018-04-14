@@ -20,6 +20,8 @@ int Split(string *str){
      * 4 = Letter or number has successfully append into *str.
      */
     if (isLetter() || isNumber()){
+        if (isLetter())
+            NumLock = false;
         *str += Buffer[ite];
         lock = true;
         return 4;
