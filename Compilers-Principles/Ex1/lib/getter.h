@@ -33,5 +33,13 @@ int GetBorder(){
     return 114514;
 }
 
+int GetReservedWord(string *str){
+    int len = sizeof(ReservedWord)/sizeof(string);
+    for (int i =0 ; i < len ; i++){
+        if (ReservedWord[i] == *str)
+            return i;
+    }
+    return 114514;
+}
 
 #endif //DING_GETTER_H

@@ -29,6 +29,7 @@ int Split(string *str){
 
 bool CheckDing(){
     auto *str = new string();
+    NumLock = true;
     int tmp = Split(str);
     while (tmp == 4){
         ite++;
@@ -36,25 +37,29 @@ bool CheckDing(){
     }
     if (lock){
         //cout << *str << "\n";
-        /*
-         * TODO :
-         * Add ReservedWord detect;
-         */
-
-
+        if (isReservedWord(str)){
+            int num = GetReservedWord(str);
+            cout << "ReservedWord:\t" << ReservedWord[num] << "\n";
+        }
+        else {
+            if (NumLock){
+                cout << "Number:\t" << *str << "\n";
+            }
+            else cout << "Ident:\t" << *str << "\n";
+        }
 
         lock = false;
     }
     if (tmp == 2){
         int num = GetOperator();
-        cout<< OperatorsKey[num] <<"\t"<<  Operators[num] <<"\n";
+        cout<< OperatorsKey[num] <<":\t"<<  Operators[num] <<"\n";
         ite++;
         delete str;
         return true;
     }
     else if (tmp == 3){
         int num = GetBorder();
-        cout<< BorderKey[num] <<"\t"<<  Border[num] <<"\n";
+        cout<< BorderKey[num] <<":\t"<<  Border[num] <<"\n";
         ite++;
         delete str;
         return true;

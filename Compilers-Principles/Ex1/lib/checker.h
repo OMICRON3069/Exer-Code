@@ -12,11 +12,14 @@ using namespace std;
 bool isReservedWord(string *str){
     int len = sizeof(ReservedWord)/sizeof(string);
     for (int i =0 ; i < len ; i++){
-        
+        if (ReservedWord[i] == *str)
+            return true;
     }
+    return false;
 }
 
 bool isLetter(){
+    NumLock = false;
     return (Buffer[ite] >= 'a' && Buffer[ite] <= 'z' || Buffer[ite] >= 'A' && Buffer[ite] <= 'Z');
 }
 
