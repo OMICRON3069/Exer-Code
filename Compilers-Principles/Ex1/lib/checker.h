@@ -9,24 +9,37 @@
 
 using namespace std;
 
-bool isLetter(char c){
-    return (c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z');
+bool isLetter(){
+    return (Buffer[ite] >= 'a' && Buffer[ite] <= 'z' || Buffer[ite] >= 'A' && Buffer[ite] <= 'Z');
 }
 
-bool isNumber(char c){
-    return (c >= '0' && c <= '9');
+bool isNumber(){
+    return (Buffer[ite] >= '0' && Buffer[ite] <= '9');
 }
 
-bool isOperator(char c) {
+
+int BorderDetect(){
+    /*
+     * BorderDetect function return value meaning.
+     * 1 = ' ' or '\n'
+     * 2 = Operators
+     * 3 = Border
+     */
     string str;
-    str += c;
-    int len = sizeof(Operators)/sizeof(string);
-    for(int i = 0; i < len; i++ ) {
-        if (Operators[i] == str);
-            return true;
+    str += Buffer[ite];
+    int lenB = sizeof(Border)/ sizeof(string);
+    int lenO = sizeof(Operators)/ sizeof(string);
+    if (Buffer[ite] != ' ' || Buffer[ite] != '\n') {
+        for(int i = 0; i < lenO; i++ ) {
+            if (Operators[i] == str);
+            return 2;
+        }
+        for(int i = 0; i < lenB; i++ ) {
+            if (Border[i] == str);
+            return 3;
+        }
     }
-    return false;
+    else if (Buffer[ite] == ' ' || Buffer[ite] == '\n') return 1;
 }
-
 
 #endif //DING_CHECKER_H

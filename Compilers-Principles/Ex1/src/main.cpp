@@ -4,6 +4,10 @@
 #include "../lib/iterators.h"
 #include "../lib/getter.h"
 
+/*
+ * The Universal error code is 114514!
+ */
+
 using namespace std;
 
 int main() {
@@ -11,6 +15,8 @@ int main() {
 
     if(LoadSrc(SrcPath))
         cout << "Load successfully" << "\n";
+
+    ite = 0;
 
     if (StartIteration())
         return 0;
