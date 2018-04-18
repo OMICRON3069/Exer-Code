@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(Ding)
+project(ooo0ooo)
 
 set(CMAKE_CXX_STANDARD 11)
 

@@ -21,10 +21,26 @@ bool GrammarBorderDetecter(int *ite){
 }
 
 CockSucker::CockSucker(string *src) {
+    bool LeftLock = true;
     for (char &it : (*src)) {
-        cout << "Test Doc is" << it << "\n";
+        //Check
+        //cout << "Test Doc is " << it << "\n";
+        if(it == '-' || it == '>'){
+            LeftLock = false;
+        }
+        else if (LeftLock){
+            this->Left += it;
+        }
+        else if (!LeftLock){
+            this->Right += it;
+        }
     }
 
+}
+
+bool CockSucker::Debug() {
+    cout << "Debug info " << "\n";
+    cout << "Left: " << this->Left << " Right: " << this->Right <<"\n";
 }
 
 #endif //DING_CHECKER_H

@@ -17,6 +17,7 @@ protected:
 
 public:
     CockSucker(string *src);
+    bool Debug();  //Maybe is not so bad to use 'cout' to debug....
 };
 
 #endif //DING_TESTER_H

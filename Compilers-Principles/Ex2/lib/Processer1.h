@@ -8,6 +8,7 @@
 #include "Tester.h"
 #include "Checker.h"
 #include <vector>
+
 using namespace std;
 
 CockSucker GrammarCreator(int *ite){
@@ -16,14 +17,19 @@ CockSucker GrammarCreator(int *ite){
         *str += Buffer[*ite];
         (*ite)++;
     }
+
     if (!(*str).empty()){
         CockSucker tmp(str);
+        tmp.Debug();
+        return tmp;
     }
 }
 
 bool StartEngine(int *ite){
-    vector <CockSucker> ThisCockSucker;
-    GrammarCreator(ite);
+    auto *ThisCockSucker = new vector<CockSucker>;
+    CockSucker FuckCockSucker = GrammarCreator(ite);
+    (*ThisCockSucker).push_back(FuckCockSucker);
+
 }
 
 #endif //DING_PROCESSER1_H
