@@ -5,7 +5,18 @@
 #ifndef DING_TESTER_H
 #define DING_TESTER_H
 
-#include "define.cpp"
+#include "Define.cpp"
 #include <iostream>
+#include <utility>
+
+class CockSucker{
+
+protected:
+    string Left;
+    string Right;
+
+public:
+    CockSucker(string *src);
+};
 
 #endif //DING_TESTER_H

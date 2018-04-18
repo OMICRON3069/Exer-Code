@@ -8,6 +8,5 @@ using namespace std;
 
 char Buffer[1000];
 int count = 0;
-int ite = 0;
 bool lock = false;
 bool NumLock = true;

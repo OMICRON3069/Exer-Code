@@ -1,5 +1,6 @@
-#include "../lib/tester.h"
-#include "../lib/loader.h"
+#include "../lib/Tester.h"
+#include "../lib/Loader.h"
+#include "../lib/Processer1.h"
 /*
  * The Universal error code is 114514!
  */
@@ -13,7 +14,11 @@ int main() {
     if(LoadSrc(SrcPath))
         cout << "Load successfully" << "\n";
 
-    ite = 0;
+    auto *ite = new int;
+    *ite = 0;
 
+    StartEngine(ite);
+
+    delete ite;
     return 0;
 }
