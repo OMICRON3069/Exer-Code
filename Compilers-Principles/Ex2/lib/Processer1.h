@@ -10,20 +10,20 @@
 #include <vector>
 using namespace std;
 
-CockSucker GrammarCreater(int *ite){
+CockSucker GrammarCreator(int *ite){
     auto *str = new string;
     while (!GrammarBorderDetecter(ite)){
         *str += Buffer[*ite];
         (*ite)++;
     }
-    if ((*str).empty()){
+    if (!(*str).empty()){
         CockSucker tmp(str);
     }
 }
 
 bool StartEngine(int *ite){
     vector <CockSucker> ThisCockSucker;
-    GrammarCreater(ite);
+    GrammarCreator(ite);
 }
 
 #endif //DING_PROCESSER1_H
