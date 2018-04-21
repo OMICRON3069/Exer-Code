@@ -10,7 +10,7 @@
 
 using namespace std;
 
-CockSucker GrammarCreator(int *ite){
+CockSucker GrammarCreator(int *ite,std::vector<string> &biu){
     auto *str = new string;
     while ((!GrammarBorderDetecter(ite)) && (*ite < count) ){
         *str += Buffer[*ite];
@@ -22,7 +22,7 @@ CockSucker GrammarCreator(int *ite){
     }
 
     if (!(*str).empty()){
-        CockSucker tmp(str);
+        CockSucker tmp(str,biu);
         tmp.Debug();
         delete str;
         return tmp;
@@ -42,9 +42,15 @@ bool StartEngine(int *ite){
      */
     vector<CockSucker> ThisCockSucker;
     vector<Cunt> CuntCluster;
+    vector<string> biu;
     while (*ite < count)
-        ThisCockSucker.push_back(GrammarCreator(ite));
+        ThisCockSucker.push_back(GrammarCreator(ite,biu));
     //cout << ThisCockSucker.size();
+
+    CuntGenerator(biu,CuntCluster);
+
+
+
     delete Buffer;
     delete ite;
     /*

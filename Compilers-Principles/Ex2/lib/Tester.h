@@ -17,7 +17,7 @@ protected:
     string Right;
 
 public:
-    CockSucker(string *src);
+    CockSucker(string *src,std::vector<string> &biu);
     bool Debug();  //Maybe is not so bad to use 'cout' to debug....
     string GetLeft() {
         return this->Left;
@@ -35,11 +35,14 @@ protected:
     string Follow;
 
 public:
-    Cunt(char bb) {
+    explicit Cunt(string bb) {
         this->B = bb;
     }
     bool CalculateFirst(std::vector<CockSucker> &tcs);
     bool CalculateFollow();
+    string GetChar() {
+        return B;
+    }
 };
 
 #endif //DING_TESTER_H

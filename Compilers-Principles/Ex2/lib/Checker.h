@@ -12,8 +12,26 @@ bool IsEndCharacter(int *tmp){
     return !(Buffer[*tmp] >= 'A' || Buffer[*tmp] <= 'Z');
 }
 
-bool CuntGenerator () {
+bool CuntDuplicationRemove(std::vector<string> &biu) {
+    if (biu.size() <= 2)
+        return true;
+    for (auto it = biu.begin(); it < biu.end(); it++) {
+        for (auto itt = it+1 ; itt < biu.end() ; itt ++) {
+            if (*itt == *it ) {
+                *it = "jibai";
+                continue;
+            }
+        }
+    }
+    return true;
+}
 
+bool CuntGenerator (std::vector<string> &biu,std::vector<Cunt> &CuntCluster) {
+    CuntDuplicationRemove(biu);
+    for (auto &it : biu) {
+        if (it == "jibai") continue;
+        else CuntCluster.push_back(Cunt(it));
+    }
 }
 
 bool GrammarBorderDetecter(int *ite){
@@ -26,7 +44,7 @@ bool GrammarBorderDetecter(int *ite){
     else return true;
 }
 
-CockSucker::CockSucker(string *src) {
+CockSucker::CockSucker(string *src,std::vector<string> &biu) {
     bool LeftLock = true;
     for (auto &it : (*src)) {
         //Check
@@ -36,6 +54,7 @@ CockSucker::CockSucker(string *src) {
         }
         else if (LeftLock){
             this->Left += it;
+            biu.push_back(this->Left);
         }
         else if (!LeftLock){
             this->Right += it;
