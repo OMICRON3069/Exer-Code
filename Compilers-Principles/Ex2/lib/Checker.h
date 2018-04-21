@@ -17,6 +17,8 @@ bool GrammarBorderDetecter(int *ite){
     if (Buffer[*ite] != '\n'){
         return false;
     }
+    else if (Buffer[*ite] == 0)
+        return false;
     else return true;
 }
 

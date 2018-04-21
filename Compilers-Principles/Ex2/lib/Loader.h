@@ -10,6 +10,7 @@
 using namespace std;
 //Reuse previously loader function.
 bool LoadSrc(const string &SrcPath){
+    Buffer = new char[1000];
     ifstream src;
     auto cc = 0;
     count = 0;

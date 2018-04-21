@@ -9,10 +9,6 @@
 using namespace std;
 
 int main() {
-    string SrcPath="test2.txt";
-
-    if(LoadSrc(SrcPath))
-        cout << "Load successfully" << "\n";
 
     auto *ite = new int;
     *ite = 0;

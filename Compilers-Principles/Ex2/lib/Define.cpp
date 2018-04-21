@@ -6,5 +6,5 @@
 
 using namespace std;
 
-char Buffer[1000];
+char *Buffer;
 int count = 0;
