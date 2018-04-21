@@ -7,7 +7,6 @@
 
 #include "Tester.h"
 #include "Checker.h"
-#include <vector>
 
 using namespace std;
 
@@ -41,18 +40,18 @@ bool StartEngine(int *ite){
     /*
      * Resolve expression.
      */
-    auto *ThisCockSucker = new vector<CockSucker>;
+    vector<CockSucker> ThisCockSucker;
     while (*ite < count) {
         CockSucker FuckCockSucker = GrammarCreator(ite);
-        (*ThisCockSucker).push_back(FuckCockSucker);
+        ThisCockSucker.push_back(FuckCockSucker);
     }
-    //cout << (*ThisCockSucker).size();
+    //cout << ThisCockSucker.size();
     delete Buffer;
+    delete ite;
     /*
      * TODO: Load sentence to Buffer here.
      */
 
-    delete ThisCockSucker;
 }
 
 #endif //DING_PROCESSER1_H

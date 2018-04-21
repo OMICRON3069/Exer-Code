@@ -15,6 +15,5 @@ int main() {
 
     StartEngine(ite);
 
-    delete ite;
     return 0;
 }
