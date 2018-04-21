@@ -12,6 +12,10 @@ bool IsEndCharacter(int *tmp){
     return !(Buffer[*tmp] >= 'A' || Buffer[*tmp] <= 'Z');
 }
 
+bool CuntGenerator () {
+
+}
+
 bool GrammarBorderDetecter(int *ite){
     //return Buffer[*ite] != '\n';
     if (Buffer[*ite] != '\n'){

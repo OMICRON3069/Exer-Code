@@ -19,12 +19,20 @@ protected:
 public:
     CockSucker(string *src);
     bool Debug();  //Maybe is not so bad to use 'cout' to debug....
+    string GetLeft() {
+        return this->Left;
+    }
+    string GetRight() {
+        return this->Right;
+    }
 };
 
 class Cunt{
 
 protected:
-    char B;
+    string B;
+    string First;
+    string Follow;
 
 public:
     Cunt(char bb) {

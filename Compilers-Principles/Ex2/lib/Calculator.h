@@ -9,8 +9,10 @@
 using namespace std;
 
 bool Cunt::CalculateFirst(std::vector<CockSucker> &tcs) {
-    for (auto it = tcs.begin(); it < tcs.end(); it++) {
+    for (auto &it : tcs) {
+        if (this->B == it.GetLeft() ) {
 
+        }
     }
 }
 

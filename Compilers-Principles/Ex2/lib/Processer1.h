@@ -41,10 +41,9 @@ bool StartEngine(int *ite){
      * Resolve expression.
      */
     vector<CockSucker> ThisCockSucker;
-    while (*ite < count) {
-        CockSucker FuckCockSucker = GrammarCreator(ite);
-        ThisCockSucker.push_back(FuckCockSucker);
-    }
+    vector<Cunt> CuntCluster;
+    while (*ite < count)
+        ThisCockSucker.push_back(GrammarCreator(ite));
     //cout << ThisCockSucker.size();
     delete Buffer;
     delete ite;
