@@ -36,7 +36,7 @@ protected:
 
 public:
     explicit Cunt(string bb) {
-        this->B = bb;
+        this->B = std::move(bb);
     }
     bool CalculateFirst(std::vector<CockSucker> &tcs);
     bool CalculateFollow();
