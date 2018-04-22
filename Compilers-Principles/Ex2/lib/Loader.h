@@ -7,25 +7,26 @@
 
 #include "Tester.h"
 #include <fstream>
+
 using namespace std;
+
 //Reuse previously loader function.
-bool LoadSrc(const string &SrcPath){
+bool LoadSrc(const string &SrcPath) {
     Buffer = new char[1000];
     ifstream src;
     auto cc = 0;
     count = 0;
-    src.open(SrcPath,std::ifstream::in);
+    src.open(SrcPath, std::ifstream::in);
     src >> noskipws;
-    while (!src.eof()){
+    while (!src.eof()) {
         src >> Buffer[cc];
         cc++;
         count++;
     }
     src.close();
-    count --;
+    count--;
     return true;
 }
-
 
 
 #endif //DING_LOADER_H

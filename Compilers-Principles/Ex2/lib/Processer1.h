@@ -10,19 +10,19 @@
 
 using namespace std;
 
-CockSucker GrammarCreator(int *ite,std::vector<string> &biu){
+CockSucker GrammarCreator(int *ite) {
     auto *str = new string;
-    while ((!GrammarBorderDetecter(ite)) && (*ite < count) ){
+    while ((!GrammarBorderDetector(ite)) && (*ite < count)) {
         *str += Buffer[*ite];
         (*ite)++;
     }
 
-    if (GrammarBorderDetecter(ite)) {
+    if (GrammarBorderDetector(ite)) {
         (*ite)++;
     }
 
-    if (!(*str).empty()){
-        CockSucker tmp(str,biu);
+    if (!(*str).empty()) {
+        CockSucker tmp(str);
         tmp.Debug();
         delete str;
         return tmp;
@@ -30,29 +30,31 @@ CockSucker GrammarCreator(int *ite,std::vector<string> &biu){
     delete str;
 }
 
-bool StartEngine(int *ite){
+bool StartEngine(int *ite) {
     /*
      * Load expression.
      */
-    if(LoadSrc("expression.txt"))
+    if (LoadSrc("expression.txt"))
         cout << "Load successfully" << "\n";
 
     /*
      * Resolve expression.
      */
     vector<CockSucker> ThisCockSucker;
-    vector<Cunt> CuntCluster;
-    vector<string> biu;
     while (*ite < count)
-        ThisCockSucker.push_back(GrammarCreator(ite,biu));
+        ThisCockSucker.push_back(GrammarCreator(ite));
     //cout << ThisCockSucker.size();
-
-    CuntGenerator(biu,CuntCluster);
-
-
 
     delete Buffer;
     delete ite;
+
+    set<char> CuntNo1; //Non end character.
+    set<char> CuntNo2; // End character.
+
+    CuntGenerator(CuntNo1, CuntNo2, ThisCockSucker);
+
+
+
     /*
      * TODO: Load sentence to Buffer here.
      */
