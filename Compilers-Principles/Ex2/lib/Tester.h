@@ -40,12 +40,14 @@ public:
         this->B = std::move(bb);
     }
 
-    set<char> FirstSet;
-    set<char> FollowSet;
 
     string GetChar() {
         return B;
     }
+
+    set<char> FirstSet;
+    set<char> FollowSet;
+
 
 };
 

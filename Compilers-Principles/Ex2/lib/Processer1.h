@@ -7,6 +7,7 @@
 
 #include "Tester.h"
 #include "Checker.h"
+#include "Calculator.h"
 
 using namespace std;
 
@@ -35,7 +36,7 @@ bool StartEngine(int *ite) {
      * Load expression.
      */
     if (LoadSrc("expression.txt"))
-        cout << "Load successfully" << "\n";
+        cout << "Load expression successfully" << "\n";
 
     /*
      * Resolve expression.

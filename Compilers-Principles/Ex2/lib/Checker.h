@@ -45,8 +45,6 @@ bool GrammarBorderDetector(int *ite) {
 CockSucker::CockSucker(string *src) {
     bool LeftLock = true;
     for (auto &it : (*src)) {
-        //Check
-        //cout << "Test Doc is " << it << "\n";
         if (it == '-' || it == '>') {
             LeftLock = false;
         } else if (LeftLock) {

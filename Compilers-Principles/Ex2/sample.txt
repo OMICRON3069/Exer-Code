@@ -1,3 +1,6 @@
+#sample input
+
+#expression.txt
 E->TK
 K->+TK
 K->$
@@ -7,11 +10,11 @@ M->$
 F->i
 F->(E)
 
+#sentence.txt
 i+i*i#
 
 
 #该程序无法处理左递归
-6
 E->E+T
 E->T
 T->T*F
