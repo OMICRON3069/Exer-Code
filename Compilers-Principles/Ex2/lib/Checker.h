@@ -37,7 +37,8 @@ bool GrammarBorderDetector(int *ite) {
     //return Buffer[*ite] != '\n';
     if (Buffer[*ite] != '\n') {
         return false;
-    } else if (Buffer[*ite] == 0)
+    }
+    else if (Buffer[*ite] == 0)
         return false;
     else return true;
 }
@@ -47,9 +48,11 @@ CockSucker::CockSucker(string *src) {
     for (auto &it : (*src)) {
         if (it == '-' || it == '>') {
             LeftLock = false;
-        } else if (LeftLock) {
+        }
+        else if (LeftLock) {
             this->Left += it;
-        } else if (!LeftLock) {
+        }
+        else if (!LeftLock) {
             this->Right += it;
         }
     }
@@ -57,8 +60,15 @@ CockSucker::CockSucker(string *src) {
 }
 
 bool CockSucker::Debug() {
-    cout << "Debug info " << "\n";
     cout << "Left: " << this->Left << " Right: " << this->Right << "\n";
+}
+
+Cunt &GetCunt(char d, std::vector<Cunt> &CuntCluster) {
+    for (auto &it : CuntCluster) {
+        if (it.B == d) {
+            return it;
+        }
+    }
 }
 
 #endif //DING_CHECKER_H

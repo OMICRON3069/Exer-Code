@@ -26,9 +26,9 @@ bool CalculateFirst(std::vector<CockSucker> &tcs, std::set<char> &FirstSet, char
                         FirstSet.insert(src);
                         break;
                     }
-                    CalculateFirst(tcs,FirstSet,src);
+                    CalculateFirst(tcs, FirstSet, src);
                     for (auto &ep : FirstSet) {
-                        if (ep == '$'){
+                        if (ep == '$') {
                             SuckerLock = true;
                             FirstSet.erase('$');
                         }
@@ -47,5 +47,81 @@ bool CalculateFirst(std::vector<CockSucker> &tcs, std::set<char> &FirstSet, char
         }
     }
 }
+
+bool CalculateFollow(std::vector<CockSucker> &tcs, std::set<char> &FollowSet, char cc, std::vector<Cunt> &CuntCluster) {
+    for (auto &it : tcs) {
+        string tmp = it.GetRight();
+        char left = it.GetLeft()[0];
+        int Position = -10;
+
+        for (int i = 0; i < tmp.length(); i++) {
+            if (tmp[i] == cc) {
+                Position = i;
+                break;
+            }
+        }
+
+        if (Position != -10 && Position < tmp.length() - 1) {
+            if (!CharacterJudge(tmp[Position + 1])) {
+                FollowSet.insert(tmp[Position + 1]);
+            }
+            else {
+                bool EpsilonLock = false;
+                for (auto &Check : GetCunt(tmp[Position + 1], CuntCluster).FirstSet) {
+                    if (Check == '$') {
+                        EpsilonLock = true;
+                    }
+                    else
+                        FollowSet.insert(Check);
+                }
+
+                if (EpsilonLock && cc != left)
+                    CalculateFollow(tcs,FollowSet,left,CuntCluster);
+            }
+        }
+        else if (Position != -10 && Position == tmp.length()-1 && cc != left) {
+            CalculateFollow(tcs,FollowSet,left,CuntCluster);
+        }
+    }
+    return true;
+}
+
+bool StartFollow(std::vector<Cunt> &CuntCluster, std::vector<CockSucker> &tcs) {
+    for (auto &it : CuntCluster) {
+        CalculateFollow(tcs, it.FollowSet, it.B, CuntCluster);
+    }
+    cout << "-----------------------------------\nFollow Set : \n";
+    for (auto &i : CuntCluster) {
+        cout << i.B << ":\t";
+        for (auto &it : i.FollowSet) {
+            cout << it << "\t";
+        }
+        cout << "\n";
+    }
+    return true;
+}
+
+bool StartFirst(std::set<char> &CuntNo1, std::vector<Cunt> &CuntCluster, std::vector<CockSucker> &tcs) {
+    for (auto &it : CuntNo1) {
+        CuntCluster.emplace_back(it);
+    }
+
+    for (auto &i : CuntCluster) {
+        CalculateFirst(tcs, i.FirstSet, i.B);
+    }
+    /*
+     * FirstSet debug info.
+     */
+    cout << "-----------------------------------\nFirst Set : \n";
+    for (auto &i : CuntCluster) {
+        cout << i.B << ":\t";
+        for (auto &it : i.FirstSet) {
+            cout << it << "\t";
+        }
+        cout << "\n";
+    }
+    return true;
+}
+
 
 #endif //OOO0OOO_CALCULATOR_H

@@ -12,7 +12,19 @@ F->(E)
 
 #sentence.txt
 i+i*i#
+#------------------------------------------
 
+#expression.txt
+S->AB
+S->bC
+A->$
+A->b
+B->$
+B->aD
+C->AD
+C->b
+D->aS
+D->c
 
 #该程序无法处理左递归
 E->E+T

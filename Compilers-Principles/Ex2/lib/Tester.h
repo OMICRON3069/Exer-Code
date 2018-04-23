@@ -30,10 +30,11 @@ public:
     }
 };
 
-class Cunt{
+class Cunt {
 
 public:
     char B;
+
     explicit Cunt(char b) {
         this->B = b;
     }

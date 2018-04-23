@@ -55,25 +55,13 @@ bool StartEngine(int *ite) {
     CuntGenerator(CuntNo1, CuntNo2, ThisCockSucker);
 
     vector<Cunt> CuntCluster;
-    for (auto &it : CuntNo1) {
-        CuntCluster.emplace_back(it);
-    }
 
-    for (auto &i : CuntCluster) {
-        CalculateFirst(ThisCockSucker, i.FirstSet, i.B);
-    }
+    if (StartFirst(CuntNo1, CuntCluster, ThisCockSucker))
+        cout << "First set calculated successfully\n\n";
 
-    /*
-     * FirstSet debug info.
-     */
-    cout << "-----------------------------------\nFirst Set : \n";
-    for (auto &i : CuntCluster) {
-        cout << i.B <<"\t";
-        for (auto &it : i.FirstSet) {
-            cout << it << "\t";
-        }
-        cout << "\n";
-    }
+    if (StartFollow(CuntCluster, ThisCockSucker))
+        cout << "Follow set calculated successfully\n";
+
 
     /*
      * TODO: Load sentence to Buffer here.
