@@ -51,6 +51,10 @@ CockSucker::CockSucker(string *src) {
         }
         else if (LeftLock) {
             this->Left += it;
+            if (fLock) {
+                fLock =false;
+                f = it;
+            }
         }
         else if (!LeftLock) {
             this->Right += it;

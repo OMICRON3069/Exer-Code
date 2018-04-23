@@ -49,6 +49,8 @@ bool CalculateFirst(std::vector<CockSucker> &tcs, std::set<char> &FirstSet, char
 }
 
 bool CalculateFollow(std::vector<CockSucker> &tcs, std::set<char> &FollowSet, char cc, std::vector<Cunt> &CuntCluster) {
+    if (cc==f)
+        FollowSet.insert('#');
     for (auto &it : tcs) {
         string tmp = it.GetRight();
         char left = it.GetLeft()[0];

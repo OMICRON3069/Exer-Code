@@ -67,6 +67,11 @@ bool StartEngine(int *ite) {
      * TODO: Load sentence to Buffer here.
      */
 
+    if (LoadSrc("sentence.txt"))
+        cout << "Load sentence successfully\n";
+
+
+
 }
 
 #endif //DING_PROCESSER1_H
