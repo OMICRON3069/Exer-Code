@@ -49,12 +49,31 @@ bool StartEngine(int *ite) {
     delete Buffer;
     delete ite;
 
-    set<char> CuntNo1; //Non end character.
-    set<char> CuntNo2; // End character.
+    set<char> CuntNo1; //Non end character. eg:'E'.
+    set<char> CuntNo2; // End character. eg:'e'.
 
     CuntGenerator(CuntNo1, CuntNo2, ThisCockSucker);
 
+    vector<Cunt> CuntCluster;
+    for (auto &it : CuntNo1) {
+        CuntCluster.emplace_back(it);
+    }
 
+    for (auto &i : CuntCluster) {
+        CalculateFirst(ThisCockSucker, i.FirstSet, i.B);
+    }
+
+    /*
+     * FirstSet debug info.
+     */
+    cout << "-----------------------------------\nFirst Set : \n";
+    for (auto &i : CuntCluster) {
+        cout << i.B <<"\t";
+        for (auto &it : i.FirstSet) {
+            cout << it << "\t";
+        }
+        cout << "\n";
+    }
 
     /*
      * TODO: Load sentence to Buffer here.

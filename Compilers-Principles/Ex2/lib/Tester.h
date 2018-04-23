@@ -32,17 +32,16 @@ public:
 
 class Cunt{
 
-protected:
-    string B;
-
 public:
-    explicit Cunt(string bb) {
-        this->B = std::move(bb);
+    char B;
+    explicit Cunt(char b) {
+        this->B = b;
     }
 
-
     string GetChar() {
-        return B;
+        string tmp;
+        tmp += B;
+        return tmp;
     }
 
     set<char> FirstSet;
