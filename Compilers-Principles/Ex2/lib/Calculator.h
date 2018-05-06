@@ -125,5 +125,9 @@ bool StartFirst(std::set<char> &CuntNo1, std::vector<Cunt> &CuntCluster, std::ve
     return true;
 }
 
+bool TableGen(std::vector<Cunt> &CuntCluster) {
+
+}
+
 
 #endif //OOO0OOO_CALCULATOR_H

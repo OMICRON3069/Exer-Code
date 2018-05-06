@@ -36,7 +36,7 @@ bool StartEngine(int *ite) {
      * Load expression.
      */
     if (LoadSrc("expression.txt"))
-        cout << "Load expression successfully" << "\n";
+        cout << "Load expression successfully\n\n";
 
     /*
      * Resolve expression.
@@ -60,7 +60,7 @@ bool StartEngine(int *ite) {
         cout << "First set calculated successfully\n\n";
 
     if (StartFollow(CuntCluster, ThisCockSucker))
-        cout << "Follow set calculated successfully\n";
+        cout << "Follow set calculated successfully\n\n";
 
 
     /*
@@ -68,7 +68,9 @@ bool StartEngine(int *ite) {
      */
 
     if (LoadSrc("sentence.txt"))
-        cout << "Load sentence successfully\n";
+        cout << "Load sentence successfully\n\n";
+
+    TableGen(CuntCluster);
 
 
 
