@@ -31,12 +31,15 @@ CockSucker GrammarCreator(int *ite) {
     delete str;
 }
 
+int **CockSucker::TableMap;
 bool StartEngine(int *ite) {
     /*
      * Load expression.
      */
     if (LoadSrc("expression.txt"))
         cout << "Load expression successfully\n\n";
+
+
 
     /*
      * Resolve expression.
@@ -49,8 +52,8 @@ bool StartEngine(int *ite) {
     delete Buffer;
     delete ite;
 
-    set<char> CuntNo1; //Non end character. eg:'E'.
-    set<char> CuntNo2; // End character. eg:'e'.
+    set<char> CuntNo1; //Non-Terminal character. eg:'E'.
+    set<char> CuntNo2; // Terminal character. eg:'e'.
 
     CuntGenerator(CuntNo1, CuntNo2, ThisCockSucker);
 
@@ -70,10 +73,17 @@ bool StartEngine(int *ite) {
     if (LoadSrc("sentence.txt"))
         cout << "Load sentence successfully\n\n";
 
-    TableGen(CuntCluster);
 
 
+    TableGen(CuntCluster,ThisCockSucker,CockSucker::TableMap,CuntNo1,CuntNo2);
 
+
+    //clean up TableMap;
+    for (int i=0;i<CuntNo1.size();i++)
+        delete[] CockSucker::TableMap[i];
+    delete[] CockSucker::TableMap;
+
+    return true;
 }
 
 #endif //DING_PROCESSER1_H

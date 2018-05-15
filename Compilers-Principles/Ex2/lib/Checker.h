@@ -31,6 +31,7 @@ bool CuntGenerator(std::set<char> &c1, std::set<char> &c2, std::vector<CockSucke
         delete tmp;
     }
     c2.insert('#');
+    return true;
 }
 
 bool GrammarBorderDetector(int *ite) {
@@ -65,6 +66,7 @@ CockSucker::CockSucker(string *src) {
 
 bool CockSucker::Debug() {
     cout << "Left: " << this->Left << " Right: " << this->Right << "\n";
+    return true;
 }
 
 Cunt &GetCunt(char d, std::vector<Cunt> &CuntCluster) {
@@ -73,6 +75,8 @@ Cunt &GetCunt(char d, std::vector<Cunt> &CuntCluster) {
             return it;
         }
     }
+    cout << "error while get Cunt\n";
+    exit(0);
 }
 
 #endif //DING_CHECKER_H

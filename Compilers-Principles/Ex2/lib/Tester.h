@@ -20,6 +20,8 @@ protected:
 public:
     CockSucker(string *src);
 
+    static int **TableMap;
+
     bool Debug();  //Maybe is not so bad to use 'cout' to debug....
     string GetLeft() {
         return this->Left;

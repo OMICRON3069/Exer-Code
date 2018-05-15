@@ -7,6 +7,7 @@
 
 #include "Tester.h"
 #include "Checker.h"
+#include <cstring>
 
 using namespace std;
 
@@ -46,6 +47,7 @@ bool CalculateFirst(std::vector<CockSucker> &tcs, std::set<char> &FirstSet, char
             }
         }
     }
+    return true;
 }
 
 bool CalculateFollow(std::vector<CockSucker> &tcs, std::set<char> &FollowSet, char cc, std::vector<Cunt> &CuntCluster) {
@@ -125,8 +127,24 @@ bool StartFirst(std::set<char> &CuntNo1, std::vector<Cunt> &CuntCluster, std::ve
     return true;
 }
 
-bool TableGen(std::vector<Cunt> &CuntCluster) {
+bool TableGen(std::vector<Cunt> &CuntCluster, std::vector<CockSucker> &tcs, int **TableMap, std::set<char> &CuntNo1, std::set<char> &CuntNo2) {
+    //init;
+    int raw,column;
+    raw = static_cast<int>(CuntNo1.size());
+    column = static_cast<int>(CuntNo2.size());
 
+    //Create Table map;
+    TableMap = new int*[raw];
+    for (int i=0;i<raw;i++)
+        TableMap[i] = new int[column];
+
+    //fill table map with -1;
+    memset(TableMap,-1, sizeof(TableMap));
+
+    for (auto &it : tcs) {
+        //it.GetRight()
+    }
+    return true;
 }
 
 
