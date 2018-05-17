@@ -139,7 +139,14 @@ bool TableGen(std::vector<Cunt> &CuntCluster, std::vector<CockSucker> &tcs, int 
         TableMap[i] = new int[column];
 
     //fill table map with -1;
-    memset(TableMap,-1, sizeof(TableMap));
+    //memset(TableMap,-1, sizeof(TableMap));
+
+    for (int i=0;i<raw;i++) {
+        for (int j=0;j<column;j++) {
+            TableMap[i][j]=-1;
+        }
+    }
+
 
     for (auto &it : tcs) {
         //it.GetRight()

@@ -78,11 +78,19 @@ bool StartEngine(int *ite) {
     TableGen(CuntCluster,ThisCockSucker,CockSucker::TableMap,CuntNo1,CuntNo2);
 
 
+    for (int i=0;i<CuntNo1.size();i++) {
+        for (int j=0;j<CuntNo2.size();j++) {
+            cout<<CockSucker::TableMap[i][j];
+        }
+        cout<<"\n";
+    }
+
     //clean up TableMap;
+    /*hide this because some error
     for (int i=0;i<CuntNo1.size();i++)
         delete[] CockSucker::TableMap[i];
     delete[] CockSucker::TableMap;
-
+    */
     return true;
 }
 
