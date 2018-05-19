@@ -35,6 +35,8 @@ bool Buffer2Vector(int *ite,std::vector<char> &Polar) {
         Polar.push_back(Buffer[*ite]);
         (*ite)++;
     }
+    if (Polar.back() == '\n')
+        Polar.pop_back();
     return true;
 }
 
@@ -65,7 +67,7 @@ bool AnalyzeSentence(int *ite,std::vector<char> &rPolar, std::vector<CockSucker>
                 char jtemp = lPolar.back();
                 lPolar.pop_back();
                 rPolar.erase(rPolar.begin());
-                if (lPolar.empty() || rPolar.empty()) {
+                if (lPolar.empty() && rPolar.empty()) {
                     cout << setw(15) <<"\tAccept";
                     cout << "\n";
                     break;
@@ -75,13 +77,6 @@ bool AnalyzeSentence(int *ite,std::vector<char> &rPolar, std::vector<CockSucker>
                     cout << "\n";
                 }
             }
-        }
-
-        else if ( (lPolar.size()==1 && rPolar.size()>=2) || (rPolar.size()==1 && lPolar.size()>=2) ) {//one of two stack is empty
-            if (Vector2Text(lPolar,rPolar))
-                cout << setw(15) << "Wrong! Incorrect sentence!";
-            cout << "\n";
-            break;
         }
 
         else {
