@@ -10,21 +10,22 @@
 using namespace std;
 
 bool Vector2Text(std::vector<char> lPolar, std::vector<char> rPolar) {
-    cout << BBQ;
+    cout <<setw(3)<< BBQ;
     string temp;
-    ios init(NULL);
-    init.copyfmt(cout);
-    for (auto &it : lPolar)
+    for (auto &it : lPolar){
+        if (it=='\n')
+            continue;
         temp+=it;
-
+    }
     cout << setw(15) <<temp;
     temp.clear();
 
-    for (auto &it : rPolar)
+    for (auto &it : rPolar){
+        if (it=='\n')
+            continue;
         temp+=it;
+    }
     cout << setw(15) <<temp;
-
-    cout.copyfmt(init);
     BBQ++;
     return true;
 }
@@ -70,7 +71,7 @@ bool AnalyzeSentence(int *ite,std::vector<char> &rPolar, std::vector<CockSucker>
                     break;
                 }
                 else {
-                    cout << setw(15) << jtemp << "\tMatch";
+                    cout << setw(15) << jtemp << " Match";
                     cout << "\n";
                 }
             }
