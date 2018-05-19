@@ -39,8 +39,6 @@ bool StartEngine(int *ite) {
     if (LoadSrc("expression.txt"))
         cout << "Load expression successfully\n\n";
 
-
-
     /*
      * Resolve expression.
      */
@@ -77,7 +75,7 @@ bool StartEngine(int *ite) {
 
     vector<char> Polar;
 
-    if (AnalyzeSentence(ite,Polar))
+    if (AnalyzeSentence(ite,Polar,ThisCockSucker,CuntCluster,CuntNo1,CuntNo2))
         cout << "Main task finished!!\n\n";
 
     return true;
