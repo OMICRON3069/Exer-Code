@@ -8,6 +8,7 @@
 #include "Tester.h"
 #include "Checker.h"
 #include "Calculator.h"
+#include "Analyzer.h"
 
 using namespace std;
 
@@ -31,7 +32,6 @@ CockSucker GrammarCreator(int *ite) {
     delete str;
 }
 
-int **CockSucker::TableMap;
 bool StartEngine(int *ite) {
     /*
      * Load expression.
@@ -65,6 +65,8 @@ bool StartEngine(int *ite) {
     if (StartFollow(CuntCluster, ThisCockSucker))
         cout << "Follow set calculated successfully\n\n";
 
+    if (TableGen(CuntCluster,ThisCockSucker,CuntNo1,CuntNo2))
+        cout << "Predict table calculated successfully\n\n";
 
     /*
      * TODO: Load sentence to Buffer here.
@@ -73,24 +75,11 @@ bool StartEngine(int *ite) {
     if (LoadSrc("sentence.txt"))
         cout << "Load sentence successfully\n\n";
 
+    vector<char> Polar;
 
+    if (AnalyzeSentence(ite,Polar))
+        cout << "Main task finished!!\n\n";
 
-    TableGen(CuntCluster,ThisCockSucker,CockSucker::TableMap,CuntNo1,CuntNo2);
-
-
-    for (int i=0;i<CuntNo1.size();i++) {
-        for (int j=0;j<CuntNo2.size();j++) {
-            cout<<CockSucker::TableMap[i][j];
-        }
-        cout<<"\n";
-    }
-
-    //clean up TableMap;
-    /*hide this because some error
-    for (int i=0;i<CuntNo1.size();i++)
-        delete[] CockSucker::TableMap[i];
-    delete[] CockSucker::TableMap;
-    */
     return true;
 }
 

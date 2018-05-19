@@ -10,6 +10,7 @@
 #include <utility>
 #include <vector>
 #include <set>
+#include <iomanip>
 
 class CockSucker {
 
@@ -19,8 +20,6 @@ protected:
 
 public:
     CockSucker(string *src);
-
-    static int **TableMap;
 
     bool Debug();  //Maybe is not so bad to use 'cout' to debug....
     string GetLeft() {

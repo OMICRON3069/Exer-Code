@@ -10,3 +10,4 @@ char *Buffer;
 int count = 0;
 bool fLock = true;
 char f;
+int TableMap[100][100];

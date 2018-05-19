@@ -7,7 +7,6 @@
 
 #include "Tester.h"
 #include "Checker.h"
-#include <cstring>
 
 using namespace std;
 
@@ -50,7 +49,8 @@ bool CalculateFirst(std::vector<CockSucker> &tcs, std::set<char> &FirstSet, char
     return true;
 }
 
-bool CalculateFollow(std::vector<CockSucker> &tcs, std::set<char> &FollowSet, char cc, std::vector<Cunt> &CuntCluster) {
+bool CalculateFollow(std::vector<CockSucker> &tcs, std::set<char> &FollowSet, char cc,
+                     std::vector<Cunt> &CuntCluster) {
     if (cc==f)
         FollowSet.insert('#');
     for (auto &it : tcs) {
@@ -127,30 +127,80 @@ bool StartFirst(std::set<char> &CuntNo1, std::vector<Cunt> &CuntCluster, std::ve
     return true;
 }
 
-bool TableGen(std::vector<Cunt> &CuntCluster, std::vector<CockSucker> &tcs, int **TableMap, std::set<char> &CuntNo1, std::set<char> &CuntNo2) {
-    //init;
-    int raw,column;
-    raw = static_cast<int>(CuntNo1.size());
-    column = static_cast<int>(CuntNo2.size());
+bool GoSelect(std::vector<Cunt> &CuntCluster, std::vector<CockSucker> &tcs,std::set<char> &CuntNo1,
+              std::set<char> &CuntNo2, CockSucker cs, int PointerRight, int TableClock) {
 
-    //Create Table map;
-    TableMap = new int*[raw];
-    for (int i=0;i<raw;i++)
-        TableMap[i] = new int[column];
+    char LeftCha = cs.GetLeft()[0];
+    char seek = cs.GetRight()[PointerRight];
 
-    //fill table map with -1;
-    //memset(TableMap,-1, sizeof(TableMap));
+    if (!CharacterJudge(seek)) {
+        if (seek != '$') {
+            TableMap[GetCuntID(LeftCha,CuntNo1)][GetCuntID(seek,CuntNo2)]=TableClock;
+        }
+        if (seek == '$') {
+            for(auto &fit : GetCunt(LeftCha,CuntCluster).FollowSet) {
+                TableMap[GetCuntID(LeftCha,CuntNo1)][GetCuntID(fit,CuntNo2)] = TableClock;
+            }
+        }
+    }
 
-    for (int i=0;i<raw;i++) {
-        for (int j=0;j<column;j++) {
-            TableMap[i][j]=-1;
+    else {
+        for (auto &nameless : GetCunt(LeftCha,CuntCluster).FirstSet)
+            TableMap[GetCuntID(LeftCha,CuntNo1)][GetCuntID(nameless,CuntNo2)] = TableClock;
+        if (GetCunt(LeftCha,CuntCluster).FirstSet.count('$') != 0) {
+
+            if (PointerRight+1 == cs.GetRight().size()) {//stand on border
+                for(auto &fit : GetCunt(LeftCha,CuntCluster).FollowSet) {
+                    TableMap[GetCuntID(LeftCha,CuntNo1)][GetCuntID(fit,CuntNo2)] = TableClock;
+                }
+            }
+            else {//Go next
+                GoSelect(CuntCluster,tcs,CuntNo1,CuntNo2,cs,PointerRight+1,TableClock);
+            }
+        }
+    }
+    return true;
+}
+
+bool TableGen(std::vector<Cunt> &CuntCluster, std::vector<CockSucker> &tcs,std::set<char> &CuntNo1,
+              std::set<char> &CuntNo2) {
+
+    for (auto &i : TableMap) {
+        for (int &j : i) {
+            j =-1;
         }
     }
 
 
+    int TableClock = 0;
     for (auto &it : tcs) {
-        //it.GetRight()
+
+        GoSelect(CuntCluster,tcs,CuntNo1,CuntNo2,it,0,TableClock);
+
+        TableClock++;
     }
+
+    //Debug predict table.
+    for (auto &i : CuntNo2) {
+        cout << setw(10) << i;
+    }
+    cout << "\n";
+    int count1=0;
+    for (auto &i : CuntNo1) {
+        cout << i << ": ";
+        int count2=0;
+        for (auto &j : CuntNo2) {
+            if (TableMap[count1][count2] == -1)
+                cout << setw(10) << "N/A";
+            else
+                cout << setw(10) << tcs[TableMap[count1][count2]].GetRight();
+            count2++;
+        }
+        cout << "\n";
+        count1++;
+    }
+    //Debug ended;
+
     return true;
 }
 

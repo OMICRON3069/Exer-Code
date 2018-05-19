@@ -10,8 +10,7 @@ using namespace std;
 
 int main() {
 
-    auto *ite = new int;
-    *ite = 0;
+    auto *ite = new int(0);
 
     StartEngine(ite);
 

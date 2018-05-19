@@ -9,7 +9,7 @@
 
 using namespace std;
 
-bool CharacterJudge(char cc) {
+bool CharacterJudge(char cc) {//non terminate cha return true
     return cc >= 'A' && cc <= 'Z';
 }
 
@@ -76,6 +76,30 @@ Cunt &GetCunt(char d, std::vector<Cunt> &CuntCluster) {
         }
     }
     cout << "error while get Cunt\n";
+    exit(0);
+}
+
+int GetCuntID(char b,std::set<char> &CuntN) {
+    int i=0;
+    for (auto &it : CuntN) {
+        if (b == it) {
+            return i;
+        }
+        i++;
+    }
+    cout << "CuntID Not Found\n";
+    exit(0);
+}
+
+int GetCockSuckerID(char B,std::vector<CockSucker> &tcs) {
+    int i=0;
+    for (auto &it : tcs) {
+        if (B == it.GetLeft()[0]) {
+            return i;
+        }
+        i++;
+    }
+    cout << "CockSucker ID Not Found\n";
     exit(0);
 }
 
