@@ -1,10 +1,4 @@
-#include "../lib/Tester.h"
-#include "../lib/Loader.h"
 #include "../lib/Processer1.h"
-/*
- * The Universal error code is 114514!
- */
-
 
 using namespace std;
 

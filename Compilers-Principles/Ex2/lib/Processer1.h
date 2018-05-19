@@ -9,6 +9,7 @@
 #include "Checker.h"
 #include "Calculator.h"
 #include "Analyzer.h"
+#include "Loader.h"
 
 using namespace std;
 

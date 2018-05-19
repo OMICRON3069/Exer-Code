@@ -88,19 +88,24 @@ int GetCuntID(char b,std::set<char> &CuntN) {
         i++;
     }
     cout << "CuntID Not Found\n";
+    cout <<b;
     exit(0);
 }
 
-int GetCockSuckerID(char B,std::vector<CockSucker> &tcs) {
+CockSucker &GetCockSuckerByID(int d,std::vector<CockSucker> &tcs) {
     int i=0;
     for (auto &it : tcs) {
-        if (B == it.GetLeft()[0]) {
-            return i;
+        if (i == d) {
+            return it;
         }
         i++;
     }
     cout << "CockSucker ID Not Found\n";
     exit(0);
+}
+
+int GetTableMapValue (char l, char r, std::set<char> n1, std::set<char> n2) {
+    return TableMap[GetCuntID(l,n1)][GetCuntID(r,n2)];
 }
 
 #endif //DING_CHECKER_H
