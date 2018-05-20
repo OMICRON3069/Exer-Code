@@ -10,6 +10,7 @@
 #include "Calculator.h"
 #include "Analyzer.h"
 #include "Loader.h"
+#include "Polish.h"
 
 using namespace std;
 
@@ -46,7 +47,6 @@ bool StartEngine(int *ite) {
     vector<CockSucker> ThisCockSucker;
     while (*ite < count)
         ThisCockSucker.push_back(GrammarCreator(ite));
-    //cout << ThisCockSucker.size();
 
     delete Buffer;
     delete ite;
@@ -67,18 +67,21 @@ bool StartEngine(int *ite) {
     if (TableGen(CuntCluster,ThisCockSucker,CuntNo1,CuntNo2))
         cout << "Predict table calculated successfully\n\n";
 
-    /*
-     * TODO: Load sentence to Buffer here.
-     */
-
     if (LoadSrc("sentence.txt"))
         cout << "Load sentence successfully\n\n";
 
-    vector<char> Polar;
+    vector<char> Polar;//Sentence goes here;
+    if (!Buffer2Vector(ite,Polar)) {
+        cout << "error while converting sentence\n";
+        exit(0);
+    }
+    delete Buffer,ite;
 
-    if (AnalyzeSentence(ite,Polar,ThisCockSucker,CuntCluster,CuntNo1,CuntNo2))
+    if (AnalyzeSentence(Polar,ThisCockSucker,CuntCluster,CuntNo1,CuntNo2))
         cout << "Main task finished!!\n\n";
 
+    if (LastJob(Polar))
+        cout << "All done!\n\n";
     return true;
 }
 
