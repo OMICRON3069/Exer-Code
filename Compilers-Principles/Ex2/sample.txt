@@ -3,12 +3,14 @@
 #expression.txt
 E->TK
 K->+TK
+K->-TK
 K->$
 T->FM
 M->*FM
+M->/FM
 M->$
-F->i
 F->(E)
+F->i
 
 #sentence.txt
 i+i*i#
