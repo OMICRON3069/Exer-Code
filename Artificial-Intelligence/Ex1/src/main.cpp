@@ -26,6 +26,7 @@ struct node {
 };
 
 node start;
+int step=0;
 vector<node> StepCheck;
 bool vis[500000];
 int to[4][2] = {0, -1, 0, 1, -1, 0, 1, 0};
@@ -38,20 +39,15 @@ int pos[][2] = {{0, 0}, //1
                 {2, 0}, //7
                 {1, 0}, //8
                 {1, 1}};//0
-                        //目标位置
+//目标位置
 
 int target[3][3] = {{0, 1, 2},
                     {7, 8, 3},
                     {6, 5, 4}};//“1 - 0” 映射为 “0 - 8”
 
-
-node &GetNode(node asd) {
-    for (auto &it : StepCheck) {
-        if (asd.f == it.f && asd.g == it.g && asd.h == it.h && asd.x == it.x && asd.y == it.y)
-            return it;
-    }
-}
-
+char g_Goal[3][3] = {{'1', '2', '3'},
+                    {'8', 'x', '4'},
+                    {'7', '6', '5'}};
 //判断是否有解
 int check() {
     int i, j, k;
@@ -71,6 +67,24 @@ int check() {
     return 1;
 }
 
+int checkp(node asd,node it) {
+    int count = 0;
+    for (int i=0;i<3;i++) {
+        for (int j=0;j<3;j++) {
+            if (asd.map[i][j] != it.map[i][j]) count++;
+        }
+    }
+    return count;
+}
+
+node &GetPNode(node asd) {
+    for (auto &it : StepCheck) {
+        if (asd.px == it.x && asd.py == it.y && it.g == (asd.g - 1) && checkp(asd,it) == 2)
+            return it;
+    }
+    exit (0);
+}
+
 void display(node asd) {
     cout << "***************************\n";
     for (auto &i : asd.map) {
@@ -81,6 +95,12 @@ void display(node asd) {
     }
     cout << "Current Step: " << asd.g << "  Current Weight:" << asd.f << "\n";
     cout << "***************************\n\n\n\n\n";
+}
+
+void displayd(node asd) {
+    display(asd);
+    if (asd.x == asd.px && asd.y == asd.py) return;
+    displayd(GetPNode(asd));
 }
 
 //康托展开
@@ -101,15 +121,14 @@ int solve(node a) {
     return ans;
 }
 
+
 //计算h值,即曼哈顿距离
 int get_h(node a) {
     int i, j;
     int ans = 0;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
-            if (a.map[i][j] == 'x') continue;
-            int k = a.map[i][j] - '1';
-            ans +=abs(pos[k][0] - i) + abs(pos[k][1] - j);
+            if (g_Goal[i][j] != a.map[i][j]) ans++;
         }
     }
     return ans;
@@ -146,43 +165,33 @@ int bfs() {
             next.f = next.g + next.h;
             int k_n = solve(next);
             if (k_n == 0) {
-                //cout << setw(5)<<i[0]<<setw(5)<<i[1] <<"\n";
+                step = next.g;
+                displayd(next);
                 return next.g;
             }
             if (vis[k_n]) continue;
             Q.push(next);
-            //cout << setw(5)<<i[0]<<setw(5)<<i[1] <<"\n";
+            StepCheck.push_back(next);
         }
     }
 }
 
 int main() {
-    std::ios_base::sync_with_stdio(false);
     Hash[0] = 1;
     for (int i = 1; i <= 9; i++) Hash[i] = Hash[i - 1] * i;
-    int t;
-    cin >> t;
-    for (int k = 0; k < t; k++) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                char a;
-                cin >> a;
-                start.map[i][j] = a;
-                if (a == '0') {
-                    start.map[i][j] = 'x';
-                    start.x = i;
-                    start.y = j;
-                }
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            char a;
+            cin >> a;
+            start.map[i][j] = a;
+            if (a == '0') {
+                start.map[i][j] = 'x';
+                start.x = i;
+                start.y = j;
+                start.px = i;
+                start.py = j;
             }
         }
-        start.px = start.x;
-        start.py = start.y;
-        if (!check()) {
-            cout << "No Solution!\n";
-        }
-        else {
-            int step = bfs();
-            cout << "Steps: " << step << "\n";
-        }
     }
+    cout << "Steps: " << bfs()  << "\n";
 }

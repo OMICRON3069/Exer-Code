@@ -42,7 +42,7 @@ int g_Goal[3][3] = {{1, 2, 3},
 int k = 0;                                           //A*所得路径的节点数
 int main() {
     struct NODE *s;
-    s = NewNode(0, 4, 7, 6, 5, 2, 8, 3, 1);                       //八数码的初始状态
+    s = NewNode(2, 8, 3, 1, 6, 4, 7, 0, 5);                       //八数码的初始状态
     s = A_star(s);                                           //调用A*算法
     if (s) {
         printf("八数码所得路径过程如下：\n");

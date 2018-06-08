@@ -17,6 +17,7 @@ struct node {
     int f, h, g; // f：当前代价  h：曼哈顿距离  g:迭代次数
     int x, y; //0 的位置
     char map[3][3];
+    int px,py;
 
     friend bool operator<(const node &a, const node &b) {
         if (a.f == b.f) return a.g < b.g;
@@ -25,6 +26,8 @@ struct node {
 };
 
 node start;
+int step=0;
+vector<node> StepCheck;
 bool vis[500000];
 int to[4][2] = {0, -1, 0, 1, -1, 0, 1, 0};
 int pos[][2] = {{0, 0}, //1
@@ -62,6 +65,25 @@ int check() {
     return 1;
 }
 
+int checkp(node asd,node it) {
+    int count = 0;
+    for (int i=0;i<3;i++) {
+        for (int j=0;j<3;j++) {
+            if (asd.map[i][j] != it.map[i][j]) count++;
+        }
+    }
+    return count;
+}
+
+node &GetPNode(node asd) {
+    for (auto &it : StepCheck) {
+        if (asd.px == it.x && asd.py == it.y && it.g == (asd.g - 1) && checkp(asd,it) <= 2)
+            return it;
+    }
+    cout << "Error occur\n";
+    exit (0);
+}
+
 void display(node asd) {
     cout << "***************************\n";
     for (auto &i : asd.map) {
@@ -72,6 +94,12 @@ void display(node asd) {
     }
     cout << "Current Step: " << asd.g << "  Current Weight:" << asd.f << "\n";
     cout << "***************************\n\n\n\n\n";
+}
+
+void displayd(node asd) {
+    display(asd);
+    if (asd.x == asd.px && asd.y == asd.py) return;
+    displayd(GetPNode(asd));
 }
 
 //康托展开
@@ -116,6 +144,7 @@ int bfs() {
     vis[solve(start)] = true;
     if (solve(start) == 0) return 0;
     Q.push(start);
+    StepCheck.push_back(start);
     node next;
     while (!Q.empty()) {
         node a = Q.top();
@@ -124,6 +153,8 @@ int bfs() {
         vis[k_s] = true;
         for (auto &i : to) {
             next = a;
+            next.px = next.x;
+            next.py = next.y;
             next.x += i[0];
             next.y += i[1];
             if (next.x < 0 || next.y < 0 || next.x > 2 || next.y > 2) continue;
@@ -134,12 +165,13 @@ int bfs() {
             next.f = next.g + next.h;
             int k_n = solve(next);
             if (k_n == 0) {
-                display(next);
+                step = next.g;
+                displayd(next);
                 return next.g;
             }
             if (vis[k_n]) continue;
             Q.push(next);
-            display(next);
+            StepCheck.push_back(next);
         }
     }
 }
@@ -147,27 +179,28 @@ int bfs() {
 int main() {
     Hash[0] = 1;
     for (int i = 1; i <= 9; i++) Hash[i] = Hash[i - 1] * i;
-    int t;
-    cin >> t;
-    for (int k = 0; k < t; k++) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                char a;
-                cin >> a;
-                start.map[i][j] = a;
-                if (a == '0') {
-                    start.map[i][j] = 'x';
-                    start.x = i;
-                    start.y = j;
-                }
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            char a;
+            cin >> a;
+            start.map[i][j] = a;
+            if (a == '0') {
+                start.map[i][j] = 'x';
+                start.x = i;
+                start.y = j;
+                start.px = i;
+                start.py = j;
             }
         }
-        if (!check()) {
-            cout << "No Solution!\n";
-        }
-        else {
-            int step = bfs();
-            cout << "Steps: " << step << "\n";
-        }
     }
+    /*
+    if (!check()) {
+        cout << "No Solution!\n";
+    }
+    else {
+        cout << "Steps: " << bfs()  << "\n";
+    }
+     */
+    cout << "Steps: " << bfs()  << "\n";
+    return 0;
 }
