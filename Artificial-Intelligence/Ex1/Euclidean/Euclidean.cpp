@@ -1,5 +1,5 @@
 //
-// Created by Omicron3069 on 6/7/2018.
+// Created by Omicron3069 on 6/8/2018.
 //
 
 #include<cmath>
@@ -14,10 +14,9 @@ using namespace std;
 int Hash[15];
 
 struct node {
-    int f, h, g; // f：当前代价  h：曼哈顿距离  g:迭代次数
+    int f, h, g; // f：当前代价  h：距离  g:迭代次数
     int x, y; //0 的位置
     char map[3][3];
-    int px,py;
 
     friend bool operator<(const node &a, const node &b) {
         if (a.f == b.f) return a.g < b.g;
@@ -26,7 +25,6 @@ struct node {
 };
 
 node start;
-vector<node> StepCheck;
 bool vis[500000];
 int to[4][2] = {0, -1, 0, 1, -1, 0, 1, 0};
 int pos[][2] = {{0, 0}, //1
@@ -38,19 +36,12 @@ int pos[][2] = {{0, 0}, //1
                 {2, 0}, //7
                 {1, 0}, //8
                 {1, 1}};//0
-                        //目标位置
+//目标位置
 
 int target[3][3] = {{0, 1, 2},
                     {7, 8, 3},
                     {6, 5, 4}};//“1 - 0” 映射为 “0 - 8”
 
-
-node &GetNode(node asd) {
-    for (auto &it : StepCheck) {
-        if (asd.f == it.f && asd.g == it.g && asd.h == it.h && asd.x == it.x && asd.y == it.y)
-            return it;
-    }
-}
 
 //判断是否有解
 int check() {
@@ -101,7 +92,7 @@ int solve(node a) {
     return ans;
 }
 
-//计算h值,即曼哈顿距离
+//计算h值,即距离
 int get_h(node a) {
     int i, j;
     int ans = 0;
@@ -109,7 +100,7 @@ int get_h(node a) {
         for (j = 0; j < 3; j++) {
             if (a.map[i][j] == 'x') continue;
             int k = a.map[i][j] - '1';
-            ans +=abs(pos[k][0] - i) + abs(pos[k][1] - j);
+            ans +=sqrt( pow((double)(pos[k][0] - i),2) + pow((double)(pos[k][1] - j),2) ); //尝试 欧拉距离
         }
     }
     return ans;
@@ -125,7 +116,6 @@ int bfs() {
     vis[solve(start)] = true;
     if (solve(start) == 0) return 0;
     Q.push(start);
-    StepCheck.push_back(start);
     node next;
     while (!Q.empty()) {
         node a = Q.top();
@@ -134,8 +124,6 @@ int bfs() {
         vis[k_s] = true;
         for (auto &i : to) {
             next = a;
-            next.px = next.x;
-            next.py = next.y;
             next.x += i[0];
             next.y += i[1];
             if (next.x < 0 || next.y < 0 || next.x > 2 || next.y > 2) continue;
@@ -146,18 +134,17 @@ int bfs() {
             next.f = next.g + next.h;
             int k_n = solve(next);
             if (k_n == 0) {
-                //cout << setw(5)<<i[0]<<setw(5)<<i[1] <<"\n";
+                display(next);
                 return next.g;
             }
             if (vis[k_n]) continue;
             Q.push(next);
-            //cout << setw(5)<<i[0]<<setw(5)<<i[1] <<"\n";
+            display(next);
         }
     }
 }
 
 int main() {
-    std::ios_base::sync_with_stdio(false);
     Hash[0] = 1;
     for (int i = 1; i <= 9; i++) Hash[i] = Hash[i - 1] * i;
     int t;
@@ -175,8 +162,6 @@ int main() {
                 }
             }
         }
-        start.px = start.x;
-        start.py = start.y;
         if (!check()) {
             cout << "No Solution!\n";
         }

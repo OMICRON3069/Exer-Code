@@ -3,6 +3,6 @@ project(Ex1)
 
 set(CMAKE_CXX_STANDARD 11)
 
-aux_source_directory(Sample1 ex1)
+aux_source_directory(src ex1)
 
 add_executable(Ex1 ${ex1})

@@ -8,13 +8,14 @@
 #include<cstring>
 #include<iostream>
 #include<algorithm>
+#include <iomanip>
 
 using namespace std;
 int Hash[15];
 
 struct node {
-    int f, h, g;
-    int x, y;
+    int f, h, g; // f：当前代价  h：曼哈顿距离  g:迭代次数
+    int x, y; //0 的位置
     char map[3][3];
 
     friend bool operator<(const node &a, const node &b) {
@@ -26,15 +27,21 @@ struct node {
 node start;
 bool vis[500000];
 int to[4][2] = {0, -1, 0, 1, -1, 0, 1, 0};
-int pos[][2] = {{0, 0}, //0
-                {0, 1}, //1
-                {0, 2}, //2
-                {1, 0}, //3
-                {1, 1}, //4
-                {1, 2}, //5
-                {2, 0}, //6
-                {2, 1}, //7
-                {2, 2}};//8
+int pos[][2] = {{0, 0}, //1
+                {0, 1}, //2
+                {0, 2}, //3
+                {1, 2}, //4
+                {2, 2}, //5
+                {2, 1}, //6
+                {2, 0}, //7
+                {1, 0}, //8
+                {1, 1}};//0
+//目标位置
+
+int target[3][3] = {{0, 1, 2},
+                    {7, 8, 3},
+                    {6, 5, 4}};//“1 - 0” 映射为 “0 - 8”
+
 
 //判断是否有解
 int check() {
@@ -43,16 +50,28 @@ int check() {
     int cnt = 0;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
-            s[3 * i + j] = start.map[i][j];
-            if (s[3 * i + j] == 'x') continue;
-            for (k = 3 * i + j - 1; k >= 0; k--) {
+            s[target[i][j]] = start.map[i][j];
+            if (s[target[i][j]] == 'x') continue;
+            for (k = target[i][j] - 1; k >= 0; k--) {
                 if (s[k] == 'x') continue;
-                if (s[k] > s[3 * i + j]) cnt++;
+                if (s[k] > s[target[i][j]]) cnt++;
             }
         }
     }
     if (cnt % 2) return 0;
     return 1;
+}
+
+void display(node asd) {
+    cout << "***************************\n";
+    for (auto &i : asd.map) {
+        for (auto &j : i) {
+            cout << setw(2) << j;
+        }
+        cout << "\n";
+    }
+    cout << "Current Step: " << asd.g << "  Current Weight:" << asd.f << "\n";
+    cout << "***************************\n\n\n\n\n";
 }
 
 //康托展开
@@ -62,12 +81,12 @@ int solve(node a) {
     int ans = 0;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
-            s[3 * i + j] = a.map[i][j];
+            s[target[i][j]] = a.map[i][j];
             int cnt = 0;
-            for (k = 3 * i + j - 1; k >= 0; k--) {
-                if (s[k] > s[3 * i + j]) cnt++;
+            for (k = target[i][j] - 1; k >= 0; k--) {
+                if (s[k] > s[target[i][j]]) cnt++;
             }
-            ans = ans + Hash[i * 3 + j] * cnt;
+            ans = ans + Hash[target[i][j]] * cnt;
         }
     }
     return ans;
@@ -103,10 +122,10 @@ int bfs() {
         Q.pop();
         int k_s = solve(a);
         vis[k_s] = true;
-        for (int i = 0; i < 4; i++) {
+        for (auto &i : to) {
             next = a;
-            next.x += to[i][0];
-            next.y += to[i][1];
+            next.x += i[0];
+            next.y += i[1];
             if (next.x < 0 || next.y < 0 || next.x > 2 || next.y > 2) continue;
             next.map[a.x][a.y] = a.map[next.x][next.y];
             next.map[next.x][next.y] = 'x';
@@ -114,9 +133,13 @@ int bfs() {
             next.h = get_h(next);
             next.f = next.g + next.h;
             int k_n = solve(next);
-            if (k_n == 0) return next.g;
+            if (k_n == 0) {
+                display(next);
+                return next.g;
+            }
             if (vis[k_n]) continue;
             Q.push(next);
+            display(next);
         }
     }
 }
@@ -142,6 +165,9 @@ int main() {
         if (!check()) {
             cout << "No Solution!\n";
         }
-        else cout << bfs() << "\n";
+        else {
+            int step = bfs();
+            cout << "Steps: " << step << "\n";
+        }
     }
 }
