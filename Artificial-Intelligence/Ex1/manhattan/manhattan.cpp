@@ -202,5 +202,6 @@ int main() {
     }
      */
     cout << "Steps: " << bfs()  << "\n";
+    cout << StepCheck.size();
     return 0;
 }

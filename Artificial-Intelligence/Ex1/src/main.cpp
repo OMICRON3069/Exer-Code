@@ -131,7 +131,7 @@ int get_h(node a) {
             if (g_Goal[i][j] != a.map[i][j]) ans++;
         }
     }
-    return ans;
+    return 0;
 }
 
 //启发式搜索
@@ -194,4 +194,5 @@ int main() {
         }
     }
     cout << "Steps: " << bfs()  << "\n";
+    cout << StepCheck.size();
 }
