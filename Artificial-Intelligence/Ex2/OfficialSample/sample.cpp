@@ -2,10 +2,10 @@
 // Created by Omicron3069 on 6/8/2018.
 //
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
-#include <time.h>
+#include <cstdlib>
+#include <cstdio>
+#include <cmath>
+#include <ctime>
 #include <iostream>
 #include <fstream>
 #include <sstream>
