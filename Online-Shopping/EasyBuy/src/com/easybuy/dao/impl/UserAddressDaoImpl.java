@@ -94,7 +94,30 @@ public class UserAddressDaoImpl extends BaseDaoImpl implements UserAddressDao {
 
     @Override
     public UserAddress getUserAddressById(Integer addressId) {
-        return null;
+
+        UserAddress userAddress = null;
+
+        String sql = " select id, userId, address, createTime, isDefault, remark " +
+                "from easybuy_address_user where id = ? ";
+
+        Object[] params = {addressId};
+
+        ResultSet rs = null;
+
+        try {
+            rs= this.executeQuery(sql,params);
+
+            while (rs.next()) {
+                userAddress = this.table2Class(rs);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.closeResource();
+            this.closeResource(rs);
+        }
+
+        return userAddress;
     }
 
     @Override
@@ -114,11 +137,10 @@ public class UserAddressDaoImpl extends BaseDaoImpl implements UserAddressDao {
     public static void main(String[] args) {
         UserAddressDaoImpl daoImpl = new UserAddressDaoImpl(DataSourceUtil.openConnection());
 
-        List<UserAddress> list = daoImpl.queryUserAddressList(new UserAddressParam());
+        UserAddress useraddressById = daoImpl.getUserAddressById(1);
 
-        for (UserAddress userAddress: list) {
-            System.out.println(userAddress.getUserId()+ " "+ userAddress.getAddress());
-        }
+        System.out.println(useraddressById.getAddress());
+
 
     }
 }
