@@ -1,0 +1,7 @@
+#This is a sample file
+#Please do not use comment in your project
+#And make sure you have R/W access to database
+url = jdbc:mysql://127.0.0.1:3306/easybuy
+driver = com.mysql.jdbc.Driver
+username = dbUser
+password = UserPasswd
