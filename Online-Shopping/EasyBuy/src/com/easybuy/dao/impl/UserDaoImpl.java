@@ -3,6 +3,7 @@ package com.easybuy.dao.impl;
 import com.easybuy.dao.UserDao;
 import com.easybuy.entity.User;
 import com.easybuy.util.DataSourceUtil;
+import com.easybuy.util.EmptyUtils;
 import com.easybuy.util.Pager;
 
 import java.sql.Connection;
@@ -47,10 +48,9 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 
     public static void main(String[] args) {
         UserDaoImpl daoImpl = new UserDaoImpl(DataSourceUtil.openConnection());
-        List<User> userList = daoImpl.getUserList(1, 2);
-        for (User user: userList) {
-            System.out.println(user.getLoginName()+" "+user.getPassword());
-        }
+        User user = daoImpl.getUser(null, "aaron");
+
+        System.out.println(user.getLoginName()+"  "+user.getIdentityCode());
     }
 
 
@@ -132,7 +132,7 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
         List<User> UserList = new ArrayList<User>();
 
         String sql = " select id, loginName, password, username, sex, " +
-                "identityCode, email, mobile, type from easybuy_user limit ?,?";
+                "identityCode, email, mobile, type from easybuy_user limit ?,? ";
         ResultSet rs = null;
 
         try {
@@ -158,9 +158,49 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
         return UserList;
     }
 
+    /**
+     * get user by id or loginName
+     * @param id user id
+     * @param loginName user login name
+     */
+
     @Override
-    public User getUser(Integer id, String loginName) throws Exception {
-        return null;
+    public User getUser(Integer id, String loginName) {
+
+        User user = new User();
+
+        StringBuffer sql = new StringBuffer(" select id, loginName, password, username, " +
+                "sex, identityCode, email, mobile, type from easybuy_user where 1=1 ");
+
+        List<Object> paramsList = new ArrayList<Object>();
+
+        if (EmptyUtils.isNotEmpty(id)) {
+            sql.append(" and id = ? ");
+            paramsList.add(id);
+        }
+
+        if (EmptyUtils.isNotEmpty(loginName)) {
+            sql.append(" and loginName = ? ");
+            paramsList.add(loginName);
+        }
+
+
+        ResultSet rs = null;
+
+        try {
+            rs = this.executeQuery(sql.toString(), paramsList.toArray());
+
+            while (rs.next()) {
+                user = this.table2Class(rs);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.closeResource();
+            this.closeResource(rs);
+        }
+
+        return user;
     }
 
 
