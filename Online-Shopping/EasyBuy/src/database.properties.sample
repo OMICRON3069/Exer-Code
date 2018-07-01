@@ -5,3 +5,10 @@ url = jdbc:mysql://127.0.0.1:3306/easybuy
 driver = com.mysql.jdbc.Driver
 username = dbUser
 password = UserPasswd
+
+
+--------
+Remote database:
+data-jp-1.vedbs.link:3306
+vedbs_1419
+7zTgQRIzmL
