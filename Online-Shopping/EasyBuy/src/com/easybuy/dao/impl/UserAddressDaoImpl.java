@@ -137,9 +137,23 @@ public class UserAddressDaoImpl extends BaseDaoImpl implements UserAddressDao {
     public static void main(String[] args) {
         UserAddressDaoImpl daoImpl = new UserAddressDaoImpl(DataSourceUtil.openConnection());
 
-        UserAddress useraddressById = daoImpl.getUserAddressById(1);
+        UserAddress littleWong = new UserAddress();
 
-        System.out.println(useraddressById.getAddress());
+        Date currentDate = new Date();
+
+        currentDate.getTime();
+
+        littleWong.setAddress("钓鱼岛");
+        littleWong.setUserId(1);
+        littleWong.setCreateTime(currentDate);
+        littleWong.setRemark("ChinaNo1");
+
+        if (daoImpl.add(littleWong) > 0) {
+            System.out.println("Success");
+        }
+        else {
+            System.out.println("Fail");
+        }
 
 
     }
