@@ -77,16 +77,10 @@ password = root (默默吐槽老师推荐配置。。。)
 
 ## JDBC操作步骤
 
-1、加载驱动（加载驱动包，mysql-connector-java） DataSourceUtil --> Class.forName 
-
-2、通过驱动管理员，建立 Java 和 MySQL 之间的连接（获取连接对象） DataSourceUtil  --> DriverManager.getConnection 
-
-3、通过链接获得预编译对象 PrePareStatement（翻译 SQL 语句给 MySQL 数据库） BaseDaoImpl --> connection.prepareStateMent(sql) 
-
-4、通过 PrePareStatement 对象，将 SQL 语句中的 '?' 占位符进行填充（保证 SQL 语句翻译的正确性和完整性） 
-
-5、mysql数据库执行翻译后的sql语句，并得到相应结果 （增删改的结果为int类型，结果要大于0；查询的结果为ResultSet，需要将rs转化为相应的user对象） UserDao.impl --> count=this.executeUpdate(sql,params) rs=this.executeQuery(sql,params)
-
-6、处理结果信息（增删改的大于0，查询的 ResultSet） 
-
-7、关闭资源
+1. 加载驱动（加载驱动包，mysql-connector-java） DataSourceUtil --> Class.forName 
+2. 通过驱动管理员，建立 Java 和 MySQL 之间的连接（获取连接对象） DataSourceUtil  --> DriverManager.getConnection 
+3. 通过链接获得预编译对象 PrePareStatement（翻译 SQL 语句给 MySQL 数据库） BaseDaoImpl --> connection.prepareStateMent(sql) 
+4. 通过 PrePareStatement 对象，将 SQL 语句中的 '?' 占位符进行填充（保证 SQL 语句翻译的正确性和完整性） 
+5. mysql数据库执行翻译后的sql语句，并得到相应结果 （增删改的结果为int类型，结果要大于0；查询的结果为ResultSet，需要将rs转化为相应的user对象） UserDao.impl --> count=this.executeUpdate(sql,params) rs=this.executeQuery(sql,params)
+6. 处理结果信息（增删改的大于0，查询的 ResultSet） 
+7. 关闭资源
