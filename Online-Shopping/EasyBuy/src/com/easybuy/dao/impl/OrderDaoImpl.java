@@ -34,6 +34,10 @@ public class OrderDaoImpl extends BaseDaoImpl implements OrderDao {
         //System.out.println(eleme.getSerialNumber());
         //System.out.println(jibai.count(null));
 
+        List<Order> Vegetable = jibai.getOrderList(1,1,1000);
+        for (Order hot:Vegetable) {
+            System.out.println(hot.getSerialNumber() + "  " + hot.getLoginName());
+        }
 
     }
 
@@ -117,21 +121,32 @@ public class OrderDaoImpl extends BaseDaoImpl implements OrderDao {
 
         List<Order> orderList = new ArrayList<Order>();
 
-        String sql = " select * from easybuy_order limit ?, ? ";
+        StringBuffer sql = new StringBuffer(" select * from easybuy_order where 1=1 ");
+
+        List<Object> paramsList = new ArrayList<Object>();
+
+        if (EmptyUtils.isNotEmpty(userId)) {
+            sql.append(" and userId = ? ");
+            paramsList.add(userId);
+        }
 
         ResultSet resultSet = null;
 
+
+
         try {
             int total = count(null);
+
             Pager page = new Pager(total, pageSize, currentPageNo);
 
-            Object[] params = { (page.getCurrentPage()-1)*page.getRowPerpage(), page.getRowPerpage() };
+            sql.append(" limit  "+ (page.getCurrentPage() -1)*page.getRowPerpage() +
+                    " , " + page.getRowPerpage());
 
-            resultSet = this.executeQuery(sql,params);
+            resultSet = this.executeQuery(sql.toString(),paramsList.toArray());
 
             while (resultSet.next()) {
-                Order oo = table2Class(resultSet);
-                orderList.add(oo);
+                Order order = table2Class(resultSet);
+                orderList.add(order);
             }
         } catch (Exception e) {
             e.printStackTrace();
