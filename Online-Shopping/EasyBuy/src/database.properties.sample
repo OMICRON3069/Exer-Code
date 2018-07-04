@@ -15,3 +15,9 @@ vedbs_1419
 url = jdbc:mysql://data-jp-1.vedbs.link:3306/vedbs_1419
 username = vedbs_1419
 password = 7zTgQRIzmL
+
+
+GCP:
+35.200.115.0
+easybuy
+easybuytest
