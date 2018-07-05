@@ -5,6 +5,16 @@ public class Product {
     private String name;
     private String description;
     private Float price;
+    private Integer stock;
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
     private Integer categoryLevel1;
     private Integer categoryLevel2;
     private Integer categoryLevel3;
