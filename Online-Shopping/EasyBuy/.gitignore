@@ -3,3 +3,6 @@ src/database.properties
 *.js*
 *.png*
 *.css*
+*.jpg*
+*.jpeg*
+*.gif*
