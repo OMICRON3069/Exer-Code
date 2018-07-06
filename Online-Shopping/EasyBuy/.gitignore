@@ -1,6 +1,6 @@
 out
 src/database.properties
-*.js*
+*.js
 *.png*
 *.css*
 *.jpg*
