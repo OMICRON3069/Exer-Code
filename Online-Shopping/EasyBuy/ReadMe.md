@@ -13,7 +13,7 @@ EasyBuy 易买网
 
 自用配置：
 
-- ~ open-jdk 9 ~ open-jdk 8
+- ~~open-jdk 9~~ open-jdk 8
 - MariaDB 10
 
 ---------------------
