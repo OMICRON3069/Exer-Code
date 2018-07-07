@@ -10,11 +10,13 @@ EasyBuy 易买网
 
 - JDK 1.8
 - MySQL 5.5
+- Tomcat
 
 自用配置：
 
 - ~~open-jdk 9~~ open-jdk 8
-- MariaDB 10
+- ~~MariaDB 10~~ GCP SQL Instance
+- ~~GlassFish~~ Payara Server 
 
 ---------------------
 
