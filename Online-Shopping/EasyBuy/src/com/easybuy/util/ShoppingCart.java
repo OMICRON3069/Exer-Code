@@ -21,11 +21,10 @@ public class ShoppingCart implements Serializable {
         for (int i = 0; i < items.size(); i++) {
 
             if ((items.get(i).getProduct().getId()).equals(product.getId())) {
-                if (items.get(i).getQuantity()+quantity > product.getStock()) {
+                if (items.get(i).getQuantity() + quantity > product.getStock()) {
                     return result.returnFail("out of stock");
-                }
-                else {
-                    items.get(i).setQuantity(items.get(i).getQuantity()+quantity);
+                } else {
+                    items.get(i).setQuantity(items.get(i).getQuantity() + quantity);
                     flag = 1;
                 }
             }
@@ -36,7 +35,7 @@ public class ShoppingCart implements Serializable {
             return result.returnFail("out of stock");
         }
         if (flag == 0) {
-            items.add(new ShoppingCartItem(product,quantity));
+            items.add(new ShoppingCartItem(product, quantity));
         }
         return result.returnSuccess();
     }
@@ -52,7 +51,7 @@ public class ShoppingCart implements Serializable {
 
     public float getTotalCost() {
         float sum = 0;
-        for (ShoppingCartItem item: items) {
+        for (ShoppingCartItem item : items) {
             sum += item.getCost();
         }
         return sum;

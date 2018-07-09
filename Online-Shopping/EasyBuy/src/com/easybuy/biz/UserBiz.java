@@ -5,15 +5,15 @@ import com.easybuy.entity.User;
 import java.util.List;
 
 public interface UserBiz {
-    boolean add (User user) ;
+    boolean add(User user);
 
-    boolean update (User user) ;
+    boolean update(User user);
 
-    boolean deleteUserById (Integer id) ;
+    boolean deleteUserById(Integer id);
 
-    Integer count() ;
+    Integer count();
 
-    List<User> getUserList(Integer currentPageNo, Integer pageSize) ;
+    List<User> getUserList(Integer currentPageNo, Integer pageSize);
 
-    User getUser(Integer id, String loginName) ;
+    User getUser(Integer id, String loginName);
 }

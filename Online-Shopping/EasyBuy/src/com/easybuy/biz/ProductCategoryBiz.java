@@ -7,7 +7,7 @@ import com.easybuy.util.ProductCategoryVo;
 import java.util.List;
 
 public interface ProductCategoryBiz {
-    void addProductCategory (ProductCategory productCategory);
+    void addProductCategory(ProductCategory productCategory);
 
     void updateProductCategory(ProductCategory productCategory);
 

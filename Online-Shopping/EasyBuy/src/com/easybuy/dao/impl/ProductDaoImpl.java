@@ -44,11 +44,11 @@ public class ProductDaoImpl extends BaseDaoImpl implements ProductDao {
 
         //System.out.println(jibai.queryProductCount(null,null,null));
 
-        List<Product> biu= jibai.getProductList(1,1000,null,null,null);
+        List<Product> biu = jibai.getProductList(1, 1000, null, null, null);
 
 
-        for (Product test: biu) {
-            System.out.println(test.getId()+" "+ test.getName() );
+        for (Product test : biu) {
+            System.out.println(test.getId() + " " + test.getName());
         }
     }
 
@@ -60,9 +60,9 @@ public class ProductDaoImpl extends BaseDaoImpl implements ProductDao {
         String sql = " insert into easybuy_product (name, description, price, stock, categoryLevel1, " +
                 " categoryLevel2, categoryLevel3, fileName, isDelete) values (?,?,?,?,?,?,?,?,?) ";
 
-        Object[] params = { product.getName(), product.getDescription(), product.getPrice(),
+        Object[] params = {product.getName(), product.getDescription(), product.getPrice(),
                 product.getStock(), product.getCategoryLevel1(), product.getCategoryLevel2(),
-                product.getCategoryLevel3(), product.getFileName(), 0 };
+                product.getCategoryLevel3(), product.getFileName(), 0};
 
         try {
             cc = this.executeInsert(sql, params);
@@ -76,18 +76,18 @@ public class ProductDaoImpl extends BaseDaoImpl implements ProductDao {
     }
 
     @Override
-    public Integer update(Product product)  {
+    public Integer update(Product product) {
 
         Integer id = 0;
 
         String sql = " update easybuy_product set name = ?, fileName = ?, categoryLevel1 = ?, " +
                 "  categoryLevel2 = ?, categoryLevel3 = ? where id = ? ";
 
-        Object[] params = { product.getName(), product.getFileName(), product.getCategoryLevel1(),
-                product.getCategoryLevel2(), product.getCategoryLevel3(), product.getId() };
+        Object[] params = {product.getName(), product.getFileName(), product.getCategoryLevel1(),
+                product.getCategoryLevel2(), product.getCategoryLevel3(), product.getId()};
 
         try {
-            id = this.executeUpdate(sql,params);
+            id = this.executeUpdate(sql, params);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -98,15 +98,15 @@ public class ProductDaoImpl extends BaseDaoImpl implements ProductDao {
     }
 
     @Override
-    public Integer updateStock(Integer id, Integer quantity)  {
+    public Integer updateStock(Integer id, Integer quantity) {
         Integer cc = 0;
 
         String sql = " update easybuy_product set stock = ? where id = ? ";
 
-        Object[] params = { quantity, id };
+        Object[] params = {quantity, id};
 
         try {
-            cc = this.executeUpdate(sql,params);
+            cc = this.executeUpdate(sql, params);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -117,15 +117,15 @@ public class ProductDaoImpl extends BaseDaoImpl implements ProductDao {
     }
 
     @Override
-    public Integer deleteProductById(Integer id)  {
+    public Integer deleteProductById(Integer id) {
         Integer cc = 0;
 
         String sql = " delete from  easybuy_product  where id = ? ";
 
-        Object[] params = { id };
+        Object[] params = {id};
 
         try {
-            cc = this.executeUpdate(sql,params);
+            cc = this.executeUpdate(sql, params);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -147,7 +147,7 @@ public class ProductDaoImpl extends BaseDaoImpl implements ProductDao {
         ResultSet resultSet = null;
 
         try {
-            resultSet = this.executeQuery(sql,params);
+            resultSet = this.executeQuery(sql, params);
 
             while (resultSet.next()) {
                 pp = table2Class(resultSet);
@@ -174,7 +174,7 @@ public class ProductDaoImpl extends BaseDaoImpl implements ProductDao {
 
         if (EmptyUtils.isNotEmpty(proName)) {
             sql.append(" and name like ? ");
-            paramList.add("%"+proName+"%");
+            paramList.add("%" + proName + "%");
         }
 
         if (EmptyUtils.isNotEmpty(categoryId)) {
@@ -187,7 +187,7 @@ public class ProductDaoImpl extends BaseDaoImpl implements ProductDao {
         ResultSet resultSet = null;
 
         try {
-            resultSet = this.executeQuery(sql.toString(),paramList.toArray());
+            resultSet = this.executeQuery(sql.toString(), paramList.toArray());
 
             while (resultSet.next()) {
                 cc = resultSet.getRow();
@@ -215,7 +215,7 @@ public class ProductDaoImpl extends BaseDaoImpl implements ProductDao {
 
         if (EmptyUtils.isNotEmpty(proName)) {
             sql.append(" and name like ? ");
-            paramList.add("%"+proName+"%");
+            paramList.add("%" + proName + "%");
         }
         if (EmptyUtils.isNotEmpty(categoryId)) {
             sql.append(" and (categoryLevel1 = ? or categoryLevel2 = ? or categoryLevel3 = ?) ");
@@ -224,16 +224,16 @@ public class ProductDaoImpl extends BaseDaoImpl implements ProductDao {
             paramList.add(categoryId);
         }
 
-        Integer total = this.queryProductCount(proName,categoryId,level);
+        Integer total = this.queryProductCount(proName, categoryId, level);
 
-        Pager page = new Pager(total,pageSize,currentPageNo);
+        Pager page = new Pager(total, pageSize, currentPageNo);
 
-        sql.append(" limit  " + (page.getCurrentPage()-1)*page.getRowPerpage() + " , " + page.getRowPerpage());
+        sql.append(" limit  " + (page.getCurrentPage() - 1) * page.getRowPerpage() + " , " + page.getRowPerpage());
 
         ResultSet resultSet = null;
 
         try {
-            resultSet = this.executeQuery(sql.toString(),paramList.toArray());
+            resultSet = this.executeQuery(sql.toString(), paramList.toArray());
 
             while (resultSet.next()) {
                 Product nigga = this.table2Class(resultSet);

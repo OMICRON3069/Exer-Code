@@ -120,7 +120,7 @@ public class ProductCategoryBizImpl implements ProductCategoryBiz {
 
         List<ProductCategory> productCategory1List = getProductCategories(null);
 
-        for (ProductCategory product1Category:productCategory1List) {
+        for (ProductCategory product1Category : productCategory1List) {
             ProductCategoryVo productCategoryVo1 = new ProductCategoryVo();
             productCategoryVo1.setProductCategory(product1Category);
             List<ProductCategoryVo> productCategoryVo1ChildList = new ArrayList<ProductCategoryVo>();
@@ -128,7 +128,7 @@ public class ProductCategoryBizImpl implements ProductCategoryBiz {
 
 
             //2
-            for (ProductCategory product2Category:productCategory2List) {
+            for (ProductCategory product2Category : productCategory2List) {
                 ProductCategoryVo productCategoryVo2 = new ProductCategoryVo();
                 productCategoryVo1ChildList.add(productCategoryVo2);
                 productCategoryVo2.setProductCategory(product2Category);
@@ -137,7 +137,7 @@ public class ProductCategoryBizImpl implements ProductCategoryBiz {
                 List<ProductCategoryVo> productCategoryVo2ChildList = new ArrayList<ProductCategoryVo>();
                 productCategoryVo2.setProductCategoryVoList(productCategoryVo2ChildList);
                 List<ProductCategory> productCategory3List = getProductCategories(product2Category.getId());
-                for (ProductCategory product3Category: productCategory3List) {
+                for (ProductCategory product3Category : productCategory3List) {
                     ProductCategoryVo productCategoryVo3 = new ProductCategoryVo();
                     productCategoryVo3.setProductCategory(product3Category);
                     productCategoryVo2ChildList.add(productCategoryVo3);
@@ -167,8 +167,7 @@ public class ProductCategoryBizImpl implements ProductCategoryBiz {
 
             if (EmptyUtils.isNotEmpty(parentId)) {
                 param.setParentId(parentId);
-            }
-            else {
+            } else {
                 param.setParentId(0);
             }
             productCategoryList = productCategoryDao.ProductCategoryList(param);

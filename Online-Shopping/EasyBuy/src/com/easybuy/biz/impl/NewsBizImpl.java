@@ -125,7 +125,7 @@ public class NewsBizImpl implements NewsBiz {
             connection = DataSourceUtil.openConnection();
 
             NewsDao dao = new NewsDaoImpl(connection);
-            cc= dao.queryNewsCount(params);
+            cc = dao.queryNewsCount(params);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

@@ -34,7 +34,7 @@ public class OrderDetailDaoImpl extends BaseDaoImpl implements OrderDetailDao {
         //System.out.println(jibai.count());
         //System.out.println(jibai.getOrderDetailById(1).getCost());
         List<OrderDetail> pop = jibai.getOrderDetail(null);
-        for (OrderDetail pipi: pop) {
+        for (OrderDetail pipi : pop) {
             System.out.println(pipi.getCost());
         }
     }
@@ -44,17 +44,17 @@ public class OrderDetailDaoImpl extends BaseDaoImpl implements OrderDetailDao {
         String sql = " insert into easybuy_order_detail (orderId, " +
                 " productId, quantity, cost) values(?,?,?,?) ";
 
-        Object[] params= { detail.getOrderId(), detail.getProduct().getId(),
-                detail.getQuantity(), detail.getCost() };
+        Object[] params = {detail.getOrderId(), detail.getProduct().getId(),
+                detail.getQuantity(), detail.getCost()};
 
-        this.executeInsert(sql,params);
+        this.executeInsert(sql, params);
     }
 
     @Override
     public void deleteById(OrderDetail detail) {
         String sql = " delete from easybuy_order_detail where id = ? ";
-        Object[] params = { detail.getId() };
-        this.executeUpdate(sql,params);
+        Object[] params = {detail.getId()};
+        this.executeUpdate(sql, params);
 
     }
 
@@ -67,7 +67,7 @@ public class OrderDetailDaoImpl extends BaseDaoImpl implements OrderDetailDao {
         ResultSet resultSet = null;
 
         try {
-            resultSet = this.executeQuery(sql,null);
+            resultSet = this.executeQuery(sql, null);
 
             while (resultSet.next()) {
                 ccc = resultSet.getRow();
@@ -88,7 +88,7 @@ public class OrderDetailDaoImpl extends BaseDaoImpl implements OrderDetailDao {
 
         String sql = " select * from easybuy_order_detail where id = ?  ";
 
-        Object[] params = { id };
+        Object[] params = {id};
 
         ResultSet resultSet = null;
 
@@ -126,7 +126,7 @@ public class OrderDetailDaoImpl extends BaseDaoImpl implements OrderDetailDao {
         ResultSet resultSet = null;
 
         try {
-            resultSet = this.executeQuery(sql.toString(),paramList.toArray());
+            resultSet = this.executeQuery(sql.toString(), paramList.toArray());
 
             while (resultSet.next()) {
                 OrderDetail orderDetail = this.table2Class(resultSet);

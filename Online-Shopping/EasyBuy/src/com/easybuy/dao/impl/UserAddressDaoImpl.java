@@ -19,7 +19,6 @@ public class UserAddressDaoImpl extends BaseDaoImpl implements UserAddressDao {
 
 
     /**
-     *
      * @param param Dynamic param
      */
     @Override
@@ -36,7 +35,7 @@ public class UserAddressDaoImpl extends BaseDaoImpl implements UserAddressDao {
 
         if (EmptyUtils.isNotEmpty(param.getUserId())) {
             sql.append(" and userId = ? ");
-            paramList.add("%"+param.getUserId()+"%");
+            paramList.add("%" + param.getUserId() + "%");
         }
 
         if (EmptyUtils.isNotEmpty(param.getAddress())) {
@@ -45,11 +44,11 @@ public class UserAddressDaoImpl extends BaseDaoImpl implements UserAddressDao {
         }
 
         if (EmptyUtils.isNotEmpty(param.getSort())) {
-            sql.append(" order by  " + param.getSort()+ "  ");
+            sql.append(" order by  " + param.getSort() + "  ");
         }
 
         if (param.isPage()) {
-            sql.append(" limit  "+ param.getStartIndex()+ " , " + param.getPageSize()+"  ");
+            sql.append(" limit  " + param.getStartIndex() + " , " + param.getPageSize() + "  ");
         }
 
 
@@ -79,7 +78,7 @@ public class UserAddressDaoImpl extends BaseDaoImpl implements UserAddressDao {
                 "(userId, address, createTime, isDefault, remark) values(?,?,?,?,?) ";
 
         try {
-            Object[] params = { userAddress.getUserId(), userAddress.getAddress(),
+            Object[] params = {userAddress.getUserId(), userAddress.getAddress(),
                     new Date(), 0, userAddress.getRemark()};
 
             count = this.executeInsert(sql, params);
@@ -105,7 +104,7 @@ public class UserAddressDaoImpl extends BaseDaoImpl implements UserAddressDao {
         ResultSet rs = null;
 
         try {
-            rs= this.executeQuery(sql,params);
+            rs = this.executeQuery(sql, params);
 
             while (rs.next()) {
                 userAddress = this.table2Class(rs);
@@ -150,8 +149,7 @@ public class UserAddressDaoImpl extends BaseDaoImpl implements UserAddressDao {
 
         if (daoImpl.add(littleWong) > 0) {
             System.out.println("Success");
-        }
-        else {
+        } else {
             System.out.println("Fail");
         }
 

@@ -11,15 +11,15 @@ public abstract class BaseDaoImpl {
         this.connection = connection;
     }
 
-    public ResultSet executeQuery(String sql,Object[] params) {
-        ResultSet rs=null;
+    public ResultSet executeQuery(String sql, Object[] params) {
+        ResultSet rs = null;
 
         try {
             pstm = connection.prepareStatement(sql);
 
             if (params != null) {
-                for (int i = 0; i < params.length ; i++) {
-                    pstm.setObject(i+1,params[i]);
+                for (int i = 0; i < params.length; i++) {
+                    pstm.setObject(i + 1, params[i]);
                 }
             }
 
@@ -38,8 +38,8 @@ public abstract class BaseDaoImpl {
         try {
             pstm = connection.prepareStatement(sql);
 
-            for (int i = 0; i<params.length;i++) {
-                pstm.setObject(i+1,params[i]);
+            for (int i = 0; i < params.length; i++) {
+                pstm.setObject(i + 1, params[i]);
             }
 
             updateRows = pstm.executeUpdate();
@@ -54,10 +54,10 @@ public abstract class BaseDaoImpl {
         Long id = 0L;
 
         try {
-            pstm = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            for (int i = 0; i< params.length ; i++) {
-                pstm.setObject(i+1,params[i]);
+            for (int i = 0; i < params.length; i++) {
+                pstm.setObject(i + 1, params[i]);
             }
 
             pstm.executeUpdate();

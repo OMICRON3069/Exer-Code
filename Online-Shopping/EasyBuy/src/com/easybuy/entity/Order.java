@@ -6,13 +6,13 @@ import java.util.List;
 
 public class Order implements Serializable {
 
-    private Integer   id;
-    private Integer   userId;
-    private String    loginName;
-    private String    userAddress;
-    private Date      createTime;
-    private Float     cost;
-    private String    serialNumber;
+    private Integer id;
+    private Integer userId;
+    private String loginName;
+    private String userAddress;
+    private Date createTime;
+    private Float cost;
+    private String serialNumber;
 
     private List<OrderDetail> orderDetailList;
 

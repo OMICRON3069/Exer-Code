@@ -6,15 +6,15 @@ import com.easybuy.param.NewsParams;
 import java.util.List;
 
 public interface NewsBiz {
-    void addNews (News news) ;
+    void addNews(News news);
 
-    void updateNews(News news) ;
+    void updateNews(News news);
 
-    void deleteNews(String parameter) ;
+    void deleteNews(String parameter);
 
-    News getNewsById(String parameter) ;
+    News getNewsById(String parameter);
 
-    List<News> queryNewsList(NewsParams params) ;
+    List<News> queryNewsList(NewsParams params);
 
-    Integer queryNewsCount(NewsParams params) ;
+    Integer queryNewsCount(NewsParams params);
 }

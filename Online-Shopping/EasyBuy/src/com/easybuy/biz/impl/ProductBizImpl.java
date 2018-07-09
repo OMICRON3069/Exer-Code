@@ -20,7 +20,7 @@ public class ProductBizImpl implements ProductBiz {
 
             ProductDao productDao = new ProductDaoImpl(connection);
 
-            cc= productDao.add(product);
+            cc = productDao.add(product);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -39,7 +39,7 @@ public class ProductBizImpl implements ProductBiz {
 
             ProductDao productDao = new ProductDaoImpl(connection);
 
-            cc= productDao.update(product);
+            cc = productDao.update(product);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -58,7 +58,7 @@ public class ProductBizImpl implements ProductBiz {
 
             ProductDao productDao = new ProductDaoImpl(connection);
 
-            cc= productDao.updateStock(productId,stock);
+            cc = productDao.updateStock(productId, stock);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -77,7 +77,7 @@ public class ProductBizImpl implements ProductBiz {
 
             ProductDao productDao = new ProductDaoImpl(connection);
 
-            cc= productDao.deleteProductById(productId);
+            cc = productDao.deleteProductById(productId);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -90,13 +90,13 @@ public class ProductBizImpl implements ProductBiz {
     public Product getProductById(Integer productId) {
         Connection connection = null;
 
-        Product  product = null;
+        Product product = null;
         try {
             connection = DataSourceUtil.openConnection();
 
             ProductDao productDao = new ProductDaoImpl(connection);
 
-            product= productDao.getProductById(productId);
+            product = productDao.getProductById(productId);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -115,13 +115,13 @@ public class ProductBizImpl implements ProductBiz {
 
             ProductDao productDao = new ProductDaoImpl(connection);
 
-            cc= productDao.queryProductCount(proName,categoryId,level);
+            cc = productDao.queryProductCount(proName, categoryId, level);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             DataSourceUtil.closeConnection(connection);
         }
-        return cc ;
+        return cc;
     }
 
     @Override
@@ -134,7 +134,7 @@ public class ProductBizImpl implements ProductBiz {
 
             ProductDao productDao = new ProductDaoImpl(connection);
 
-            productList= productDao.getProductList(currentPageNo,pageSize,proName,categoryId,level);
+            productList = productDao.getProductList(currentPageNo, pageSize, proName, categoryId, level);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

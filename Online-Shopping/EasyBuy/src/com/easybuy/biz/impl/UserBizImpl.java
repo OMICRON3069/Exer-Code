@@ -55,7 +55,7 @@ public class UserBizImpl implements UserBiz {
         try {
             connection = DataSourceUtil.openConnection();
             UserDao dao = new UserDaoImpl(connection);
-            cc = dao.deleteUserById(id+"");
+            cc = dao.deleteUserById(id + "");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -73,7 +73,7 @@ public class UserBizImpl implements UserBiz {
         try {
             connection = DataSourceUtil.openConnection();
             UserDao dao = new UserDaoImpl(connection);
-            cc= dao.count();
+            cc = dao.count();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -91,7 +91,7 @@ public class UserBizImpl implements UserBiz {
         try {
             connection = DataSourceUtil.openConnection();
             UserDao dao = new UserDaoImpl(connection);
-            userList = dao.getUserList(currentPageNo,pageSize);
+            userList = dao.getUserList(currentPageNo, pageSize);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -109,7 +109,7 @@ public class UserBizImpl implements UserBiz {
         try {
             connection = DataSourceUtil.openConnection();
             UserDao dao = new UserDaoImpl(connection);
-            user = dao.getUser(id,loginName);
+            user = dao.getUser(id, loginName);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

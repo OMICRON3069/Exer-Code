@@ -24,8 +24,8 @@ public class NewsDaoImpl extends BaseDaoImpl implements NewsDao {
 
         try {
             NewsParams pp = new NewsParams();
-            List<News> jibai =  daoImpl.queryNewsList(pp);
-            for (News ji: jibai) {
+            List<News> jibai = daoImpl.queryNewsList(pp);
+            for (News ji : jibai) {
                 System.out.println(ji.getTitle() + "  " + ji.getContent());
             }
         } catch (Exception e) {
@@ -37,27 +37,27 @@ public class NewsDaoImpl extends BaseDaoImpl implements NewsDao {
     public void add(News news) throws Exception {
         String sql = " insert into easybuy_news(title, content, createTime ) values(?,?,?) ";
 
-        Object[] params = { news.getTitle(), news.getContent(), new Date()};
+        Object[] params = {news.getTitle(), news.getContent(), new Date()};
 
-        this.executeUpdate(sql,params);
+        this.executeUpdate(sql, params);
     }
 
     @Override
     public void update(News news) throws Exception {
         String sql = " update easybuy_news set title = ?, content = ? where id = ? ";
 
-        Object[] params = { news.getTitle(), news.getContent(), news.getId()};
+        Object[] params = {news.getTitle(), news.getContent(), news.getId()};
 
-        this.executeUpdate(sql,params);
+        this.executeUpdate(sql, params);
     }
 
     @Override
     public void deleteById(Integer id) throws Exception {
         String sql = " delete from easybuy_news where id = ? ";
 
-        Object[] params = { id };
+        Object[] params = {id};
 
-        this.executeUpdate(sql,params);
+        this.executeUpdate(sql, params);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class NewsDaoImpl extends BaseDaoImpl implements NewsDao {
 
         String sql = " select id, title, content, createTime from easybuy_news where id = ? ";
 
-        Object[] params ={ id };
+        Object[] params = {id};
 
         ResultSet resultSet = null;
 
@@ -112,7 +112,7 @@ public class NewsDaoImpl extends BaseDaoImpl implements NewsDao {
 
         ResultSet resultSet = null;
         try {
-            resultSet = this.executeQuery(sql.toString(),paramList.toArray());
+            resultSet = this.executeQuery(sql.toString(), paramList.toArray());
 
             while (resultSet.next()) {
                 News news = this.table2Class(resultSet);
@@ -143,7 +143,7 @@ public class NewsDaoImpl extends BaseDaoImpl implements NewsDao {
         ResultSet rs = null;
 
         try {
-            rs = this.executeQuery(sql.toString(),paramsList.toArray());
+            rs = this.executeQuery(sql.toString(), paramsList.toArray());
 
             while (rs.next()) {
                 count = rs.getRow();

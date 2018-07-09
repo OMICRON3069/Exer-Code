@@ -34,8 +34,8 @@ public class OrderDaoImpl extends BaseDaoImpl implements OrderDao {
         //System.out.println(eleme.getSerialNumber());
         //System.out.println(jibai.count(null));
 
-        List<Order> Vegetable = jibai.getOrderList(1,1,1000);
-        for (Order hot:Vegetable) {
+        List<Order> Vegetable = jibai.getOrderList(1, 1, 1000);
+        for (Order hot : Vegetable) {
             System.out.println(hot.getSerialNumber() + "  " + hot.getLoginName());
         }
 
@@ -46,33 +46,33 @@ public class OrderDaoImpl extends BaseDaoImpl implements OrderDao {
         String sql = " insert into easybuy_order (userId, loginName, userAddress, " +
                 " createTime, cost, serialNumber) values( ?,?,?,?,?,? ) ";
 
-        Object[] params = { order.getUserId(), order.getLoginName(), order.getUserAddress(),
-                new Date(), order.getCost(), order.getSerialNumber() };
+        Object[] params = {order.getUserId(), order.getLoginName(), order.getUserAddress(),
+                new Date(), order.getCost(), order.getSerialNumber()};
 
-        this.executeInsert(sql,params);
+        this.executeInsert(sql, params);
     }
 
     @Override
     public void deleteById(Integer id) {
         String sql = " delete from easybuy_order where id = ? ";
 
-        Object[] params = { id };
+        Object[] params = {id};
 
-        this.executeUpdate(sql,params);
+        this.executeUpdate(sql, params);
     }
 
     @Override
     public Order getOrderById(Integer id) {
         String sql = " select * from easybuy_order where id = ? ";
 
-        Object[] params = { id };
+        Object[] params = {id};
 
         Order jibai = new Order();
 
         ResultSet resultSet = null;
 
         try {
-            resultSet = this.executeQuery(sql,params);
+            resultSet = this.executeQuery(sql, params);
 
             while (resultSet.next()) {
                 jibai = table2Class(resultSet);
@@ -89,7 +89,7 @@ public class OrderDaoImpl extends BaseDaoImpl implements OrderDao {
 
     @Override
     public Integer count(Integer userId) {
-        StringBuffer sql = new StringBuffer( " select * from easybuy_order where 1=1  ");
+        StringBuffer sql = new StringBuffer(" select * from easybuy_order where 1=1  ");
 
         List<Object> paramList = new ArrayList<Object>();
 
@@ -133,16 +133,15 @@ public class OrderDaoImpl extends BaseDaoImpl implements OrderDao {
         ResultSet resultSet = null;
 
 
-
         try {
             int total = count(null);
 
             Pager page = new Pager(total, pageSize, currentPageNo);
 
-            sql.append(" limit  "+ (page.getCurrentPage() -1)*page.getRowPerpage() +
+            sql.append(" limit  " + (page.getCurrentPage() - 1) * page.getRowPerpage() +
                     " , " + page.getRowPerpage());
 
-            resultSet = this.executeQuery(sql.toString(),paramsList.toArray());
+            resultSet = this.executeQuery(sql.toString(), paramsList.toArray());
 
             while (resultSet.next()) {
                 Order order = table2Class(resultSet);

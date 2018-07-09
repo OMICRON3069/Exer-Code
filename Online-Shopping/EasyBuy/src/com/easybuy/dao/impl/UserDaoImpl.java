@@ -20,7 +20,6 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 
 
     /**
-     *
      * @param user The user to be added
      */
     @Override
@@ -33,10 +32,10 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
                     "(loginName,userName,password,sex,identityCode,email,mobile) " +
                     "values(?,?,?,?,?,?,?) ";
 
-            Object[] params = {user.getLoginName(),user.getUserName(),user.getPassword(),
-                    user.getSex(),user.getIdentityCode(),user.getEmail(),user.getMobile()};
+            Object[] params = {user.getLoginName(), user.getUserName(), user.getPassword(),
+                    user.getSex(), user.getIdentityCode(), user.getEmail(), user.getMobile()};
 
-            id = this.executeInsert(sql,params);
+            id = this.executeInsert(sql, params);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -50,12 +49,11 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
         UserDaoImpl daoImpl = new UserDaoImpl(DataSourceUtil.openConnection());
         User user = daoImpl.getUser(null, "aaron");
 
-        System.out.println(user.getLoginName()+"  "+user.getIdentityCode());
+        System.out.println(user.getLoginName() + "  " + user.getIdentityCode());
     }
 
 
     /**
-     *
      * @param user update user info
      */
     @Override
@@ -67,11 +65,11 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
                 "identityCode = ?, email = ?, mobile = ? where id = ?";
 
         try {
-            Object[] params={user.getLoginName(),user.getUserName(),user.getType(),
-                    user.getSex(),user.getIdentityCode(),
-                    user.getEmail(),user.getMobile(),user.getId()};
+            Object[] params = {user.getLoginName(), user.getUserName(), user.getType(),
+                    user.getSex(), user.getIdentityCode(),
+                    user.getEmail(), user.getMobile(), user.getId()};
 
-            count = this.executeUpdate(sql,params);
+            count = this.executeUpdate(sql, params);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -89,9 +87,9 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
         try {
             String sql = " delete from easybuy_user where id = ? ";
 
-            Object[] params = { id };
+            Object[] params = {id};
 
-            count = this.executeUpdate(sql,params);
+            count = this.executeUpdate(sql, params);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -140,9 +138,9 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 
             Pager page = new Pager(total, pageSize, currentPageNo);
 
-            Object[] params = { (page.getCurrentPage()-1)*page.getRowPerpage(), page.getRowPerpage() };
+            Object[] params = {(page.getCurrentPage() - 1) * page.getRowPerpage(), page.getRowPerpage()};
 
-            rs = this.executeQuery(sql,params);
+            rs = this.executeQuery(sql, params);
 
             while (rs.next()) {
                 User user = this.table2Class(rs);
@@ -160,7 +158,8 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 
     /**
      * get user by id or loginName
-     * @param id user id
+     *
+     * @param id        user id
      * @param loginName user login name
      */
 
@@ -205,7 +204,6 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 
 
     /**
-     *
      * @param rs ResultSet of SQL query
      * @return User : User class
      */
