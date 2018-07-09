@@ -1,4 +1,7 @@
 out
+<<<<<<< HEAD
+src/database.properties
+=======
 src/database.properties
 *.js
 *.png*
@@ -6,3 +9,4 @@ src/database.properties
 *.jpg*
 *.jpeg*
 *.gif*
+>>>>>>> e0650dc7ea7d6aa8347acf52bd9c07609a2df002
