@@ -166,7 +166,7 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
     @Override
     public User getUser(Integer id, String loginName) {
 
-        User user = new User();
+        User user = null;
 
         StringBuffer sql = new StringBuffer(" select id, loginName, password, username, " +
                 "sex, identityCode, email, mobile, type from easybuy_user where 1=1 ");
