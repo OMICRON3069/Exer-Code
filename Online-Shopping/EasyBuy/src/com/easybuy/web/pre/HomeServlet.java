@@ -47,17 +47,17 @@ public class HomeServlet extends AbstractServlet {
 
         Pager pager = new Pager(5, 5, 1);
         NewsParams params = new NewsParams();
-        params.openPage((pager.getCurrentPage()-1)*pager.getRowPerpage(),pager.getRowPerpage());
+        params.openPage((pager.getCurrentPage() - 1) * pager.getRowPerpage(), pager.getRowPerpage());
 
         List<News> news = newsBiz.queryNewsList(params);
 
-        for (ProductCategoryVo vo: productCategoryVoList) {
+        for (ProductCategoryVo vo : productCategoryVoList) {
             List<Product> productList = productBiz.getProductList(1, 8, null, vo.getProductCategory().getId(), 1);
             vo.setProductList(productList);
         }
 
-        request.setAttribute("productCategoryVoList",productCategoryVoList);
-        request.setAttribute("news",news);
+        request.setAttribute("productCategoryVoList", productCategoryVoList);
+        request.setAttribute("news", news);
         return "/pre/index";
     }
 }
