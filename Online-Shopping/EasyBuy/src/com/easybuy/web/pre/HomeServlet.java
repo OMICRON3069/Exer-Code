@@ -7,6 +7,7 @@ import com.easybuy.biz.impl.NewsBizImpl;
 import com.easybuy.biz.impl.ProductBizImpl;
 import com.easybuy.biz.impl.ProductCategoryBizImpl;
 import com.easybuy.entity.News;
+import com.easybuy.entity.Product;
 import com.easybuy.param.NewsParams;
 import com.easybuy.util.Pager;
 import com.easybuy.util.ProductCategoryVo;
@@ -51,9 +52,12 @@ public class HomeServlet extends AbstractServlet {
         List<News> news = newsBiz.queryNewsList(params);
 
         for (ProductCategoryVo vo: productCategoryVoList) {
-            productBiz.getProductList(1,8,null,vo.getProductCategory().getId(),1);
-
+            List<Product> productList = productBiz.getProductList(1, 8, null, vo.getProductCategory().getId(), 1);
+            vo.setProductList(productList);
         }
+
+        request.setAttribute("productCategoryVoList",productCategoryVoList);
+        request.setAttribute("news",news);
         return "/pre/index";
     }
 }
