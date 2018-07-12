@@ -8,7 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
 
-@WebServlet(urlPatterns = {"/userAddress"}, name = "userAddress")
 public class UserAddressServlet extends AbstractServlet {
 
     private UserAddressBiz userAddressBiz;
