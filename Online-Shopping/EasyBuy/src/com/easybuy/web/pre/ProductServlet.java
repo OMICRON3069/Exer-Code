@@ -98,7 +98,7 @@ public class ProductServlet extends AbstractServlet {
         request.setAttribute("product",product);
         request.setAttribute("productCategoryVoList",productCategoryVoList);
         addRecentProduct(request,product);
-        return "/pre/product/productDetail";
+        return "/pre/product/productDeatil";//惊了
     }
 
 
