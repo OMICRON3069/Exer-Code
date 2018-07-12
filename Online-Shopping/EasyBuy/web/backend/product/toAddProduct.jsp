@@ -36,7 +36,7 @@
                             <option value="" selected="selected">请选择...</option>
                             <c:forEach items="${productCategoryList1}" var="temp">
                                 <option value="${temp.id}"
-                                        <c:if test="${product.categoryLevel1Id==temp.id}">selected="selected"</c:if> >${temp.name}</option>
+                                        <c:if test="${product.categoryLevel1==temp.id}">selected="selected"</c:if> >${temp.name}</option>
                             </c:forEach>
                         </select>
                     </td>
@@ -50,7 +50,7 @@
                             <option value="0" selected="selected">请选择...</option>
                             <c:forEach items="${productCategoryList2}" var="temp">
                                 <option value="${temp.id}"
-                                        <c:if test="${product.categoryLevel2Id==temp.id}">selected="selected"</c:if> >${temp.name}</option>
+                                        <c:if test="${product.categoryLevel2==temp.id}">selected="selected"</c:if> >${temp.name}</option>
                             </c:forEach>
                         </select>
                     </td>
@@ -63,7 +63,7 @@
                             <option value="0" selected="selected">请选择...</option>
                             <c:forEach items="${productCategoryList3}" var="temp">
                                 <option value="${temp.id}"
-                                        <c:if test="${product.categoryLevel3Id==temp.id}">selected="selected"</c:if> >${temp.name}</option>
+                                        <c:if test="${product.categoryLevel3==temp.id}">selected="selected"</c:if> >${temp.name}</option>
                             </c:forEach>
                         </select>
                     </td>

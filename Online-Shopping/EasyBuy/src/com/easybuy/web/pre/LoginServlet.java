@@ -52,7 +52,7 @@ public class LoginServlet extends AbstractServlet {
         return returnResult;
     }
 
-    public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String loginOut(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ReturnResult result = new ReturnResult();
 
         try {
